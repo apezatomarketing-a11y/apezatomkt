@@ -1,6 +1,18 @@
 import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+  // Tratar requisições OPTIONS (CORS Preflight)
+  if (event.httpMethod === "OPTIONS") {
+    return new Response(null, {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    });
+  }
+
   // Apenas aceitar POST requests
   if (event.httpMethod !== "POST") {
     return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
@@ -107,15 +119,14 @@ Você deve:
     // Mas como estamos usando a API REST, vamos injetar no primeiro user message,
     // garantindo que o histórico seja mantido.
 
-    // Encontrando o primeiro user message para injetar o systemPrompt
-    const firstUserMessageIndex = fullConversation.findIndex(
-      (content) => content.role === "user"
-    );
+    // A API REST do Gemini (generateContent) não suporta systemInstruction.
+    // A melhor prática é injetar o systemPrompt no primeiro user message.
+    // Como o histórico está sendo enviado, o primeiro item com role "user"
+    // será a primeira mensagem do usuário na conversa.
 
-    if (firstUserMessageIndex !== -1) {
-      // Injetar o systemPrompt no primeiro user message
-      fullConversation[firstUserMessageIndex].parts[0].text =
-        systemPrompt + "\n\n" + fullConversation[firstUserMessageIndex].parts[0].text;
+    // Se o histórico estiver vazio, a primeira mensagem é a atual.
+    if (fullConversation.length === 1) {
+      fullConversation[0].parts[0].text = systemPrompt + "\n\n" + fullConversation[0].parts[0].text;
     }
 
     const requestBody = {
