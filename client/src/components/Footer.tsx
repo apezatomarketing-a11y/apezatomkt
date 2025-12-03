@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Tiktok, Whatsapp } from 'lucide-react';
+import { Instagram, Linkedin, Mail, MapPin, Phone, Send, TikTok, Whatsapp } from 'lucide-react';
 import { Link } from 'wouter';
 import { useModal } from './ModalProvider';
 
@@ -23,7 +23,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <a href="https://www.tiktok.com/@apezatomarketing" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300">
-                <Tiktok className="w-5 h-5" />
+                <TikTok className="w-5 h-5" />
               </a>
               <a href="https://www.instagram.com/danielleapezatomktdigital/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300">
                 <Instagram className="w-5 h-5" />
