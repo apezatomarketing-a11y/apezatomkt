@@ -141,3 +141,6 @@ Você deve:
 	          "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
 	      }) as string,
 	    };
+}
+
+export default handler;
