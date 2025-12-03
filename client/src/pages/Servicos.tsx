@@ -7,24 +7,38 @@ export default function Servicos() {
   const services = [
     {
       id: 'sites',
-      title: 'Web Design & Desenvolvimento',
-      desc: 'Sites que não são apenas bonitos, mas máquinas de vendas. Desenvolvemos plataformas rápidas, seguras e otimizadas para conversão.',
+      title: 'Criação de Sites de Alta Conversão',
+      desc: 'Desenvolvemos sites institucionais e landing pages focados em performance, com design exclusivo e tecnologia otimizada para buscadores.',
       features: ['Landing Pages de Alta Conversão', 'Sites Institucionais', 'E-commerces', 'Otimização de Velocidade (Core Web Vitals)'],
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop',
     },
     {
       id: 'trafego',
-      title: 'Tráfego Pago (Ads)',
-      desc: 'Chega de queimar dinheiro. Criamos campanhas estratégicas no Google, Meta e LinkedIn Ads para atrair o público certo no momento de compra.',
+      title: 'Gestão de Tráfego Pago (Performance)',
+      desc: 'Campanhas inteligentes no Google Ads e Meta Ads, segmentadas para atrair leads qualificados e maximizar o retorno sobre o investimento (ROI).',
       features: ['Gestão de Google Ads', 'Facebook & Instagram Ads', 'LinkedIn Ads B2B', 'Remarketing Estratégico'],
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2340&auto=format&fit=crop',
     },
     {
       id: 'seo',
-      title: 'SEO & Conteúdo',
-      desc: 'Domine as buscas orgânicas e construa autoridade. Nossa estratégia de SEO coloca sua marca nas primeiras posições do Google.',
+      title: 'Marketing de Conteúdo e SEO',
+      desc: 'Produção de conteúdo estratégico que posiciona sua marca como autoridade, gerando tráfego orgânico e nutrindo leads ao longo do funil de vendas.',
       features: ['SEO On-page e Técnico', 'Link Building', 'Marketing de Conteúdo', 'Otimização de Google Meu Negócio'],
       image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=2348&auto=format&fit=crop',
+    },
+    {
+      id: 'social',
+      title: 'Gestão de Mídia Social',
+      desc: 'Estratégias de mídia social que constroem comunidade, engajamento e autoridade de marca em plataformas como Instagram, TikTok, LinkedIn e Facebook.',
+      features: ['Criação de Conteúdo', 'Gestão de Comunidade', 'Estratégia de Crescimento', 'Análise de Dados e Relatórios'],
+      image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=2340&auto=format&fit=crop',
+    },
+    {
+      id: 'consultoria',
+      title: 'Consultoria Estratégica Digital',
+      desc: 'Orientação especializada para transformar seu negócio digitalmente, desde a definição de estratégia até a implementação de soluções integradas.',
+      features: ['Diagnóstico de Mercado', 'Planejamento Estratégico', 'Acompanhamento de Resultados', 'Treinamento de Equipes'],
+      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2340&auto=format&fit=crop',
     },
   ];
 
@@ -88,8 +102,8 @@ export default function Servicos() {
                 ))}
               </ul>
               
-<div className="pt-4">
-                <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20este%20servi%C3%A7o." target="_blank" rel="noopener noreferrer">
+              <div className="pt-4">
+                <a href={`https://wa.me/5512991895547?text=Olá, gostaria de solicitar um orçamento para ${service.title}.`} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20">
                     Solicitar Orçamento
                     <ArrowRight className="ml-2 w-5 h-5" />
@@ -107,7 +121,7 @@ export default function Servicos() {
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             Temos soluções personalizadas para cada tipo de negócio. Entre em contato e vamos desenhar juntos a melhor estratégia para você.
           </p>
-<a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20gostaria%20de%20conversar%20com%20um%20especialista%20sobre%20uma%20solu%C3%A7%C3%A3o%20personalizada." target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/5512991895547?text=Olá, gostaria de conversar com um especialista sobre uma solução personalizada." target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="lg" className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
               Falar com Especialista
             </Button>

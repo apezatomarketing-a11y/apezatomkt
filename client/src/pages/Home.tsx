@@ -211,7 +211,7 @@ export default function Home() {
                 Não entregamos apenas serviços, entregamos um ecossistema de crescimento para sua empresa.
               </p>
             </div>
-<a href="/servicos#top" className="inline-flex">
+<a href="/servicos" className="inline-flex">
               <Button variant="outline" className="rounded-full">Ver Todos os Serviços</Button>
             </a>
           </div>

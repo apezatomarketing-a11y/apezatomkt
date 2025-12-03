@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { BookOpen, Download, MonitorPlay, ShoppingCart } from 'lucide-react';
+import { BookOpen, Download, MonitorPlay } from 'lucide-react';
 
 export default function Produtos() {
   const products = [
@@ -9,25 +9,28 @@ export default function Produtos() {
       id: 1,
       title: 'E-book: Guia Definitivo do Tráfego Pago',
       desc: 'Aprenda a criar campanhas que vendem de verdade. Do zero ao avançado.',
-      price: 'R$ 47,90',
+      price: 'A partir de R$ 47,90',
       icon: BookOpen,
       category: 'E-book',
+      whatsappMessage: 'Olá, gostaria de solicitar orçamento para o E-book: Guia Definitivo do Tráfego Pago.',
     },
     {
       id: 2,
       title: 'Pack de Templates para Social Media',
       desc: 'Mais de 100 templates editáveis no Canva para profissionalizar seu Instagram.',
-      price: 'R$ 97,00',
+      price: 'A partir de R$ 97,00',
       icon: Download,
       category: 'Templates',
+      whatsappMessage: 'Olá, gostaria de solicitar orçamento para o Pack de Templates para Social Media.',
     },
     {
       id: 3,
       title: 'Consultoria Express (1h)',
       desc: 'Uma hora de mentoria focada para destravar seu negócio digital.',
-      price: 'R$ 297,00',
+      price: 'A partir de R$ 297,00',
       icon: MonitorPlay,
       category: 'Consultoria',
+      whatsappMessage: 'Olá, gostaria de solicitar orçamento para a Consultoria Express (1h).',
     },
     {
       id: 4,
@@ -36,6 +39,7 @@ export default function Produtos() {
       price: 'Gratuito',
       icon: BookOpen,
       category: 'Material Rico',
+      whatsappMessage: 'Olá, gostaria de solicitar o Checklist de SEO 2025.',
     },
   ];
 
@@ -67,6 +71,7 @@ export default function Produtos() {
             {products.map((product, index) => (
               <motion.div
                 key={product.id}
+                id={`produto-${product.id}`}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -87,12 +92,13 @@ export default function Produtos() {
                     {product.desc}
                   </p>
                   
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
-                    <span className="text-2xl font-bold text-primary">{product.price}</span>
-                    <Button size="sm" className="rounded-full gap-2">
-                      Comprar
-                      <ShoppingCart className="w-4 h-4" />
-                    </Button>
+                  <div className="flex flex-col gap-4 mt-auto pt-4 border-t border-border">
+                    <span className="text-xl font-bold text-primary">{product.price}</span>
+                    <a href={`https://wa.me/5512991895547?text=${encodeURIComponent(product.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
+                      <Button className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                        Solicitar Orçamento
+                      </Button>
+                    </a>
                   </div>
                 </div>
               </motion.div>

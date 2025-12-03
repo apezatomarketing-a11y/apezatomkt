@@ -54,11 +54,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/cases">
-                  <a className="text-muted-foreground hover:text-primary transition-colors">Cases de Sucesso</a>
-                </Link>
-              </li>
-              <li>
                 <Link href="/contato">
                   <a className="text-muted-foreground hover:text-primary transition-colors">Contato</a>
                 </Link>
@@ -76,29 +71,19 @@ export default function Footer() {
             <h3 className="font-heading font-bold text-lg mb-6">Serviços</h3>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/servicos#sites">
-                  <a className="text-muted-foreground hover:text-primary transition-colors">Criação de Sites</a>
-                </Link>
+                <a href="/#sites" className="text-muted-foreground hover:text-primary transition-colors">Criação de Sites</a>
               </li>
               <li>
-                <Link href="/servicos#trafego">
-                  <a className="text-muted-foreground hover:text-primary transition-colors">Tráfego Pago</a>
-                </Link>
+                <a href="/#trafego" className="text-muted-foreground hover:text-primary transition-colors">Tráfego Pago</a>
               </li>
               <li>
-                <Link href="/servicos#seo">
-                  <a className="text-muted-foreground hover:text-primary transition-colors">SEO & Conteúdo</a>
-                </Link>
+                <a href="/#seo" className="text-muted-foreground hover:text-primary transition-colors">SEO & Conteúdo</a>
               </li>
               <li>
-                <Link href="/servicos#social">
-                  <a className="text-muted-foreground hover:text-primary transition-colors">Social Media</a>
-                </Link>
+                <a href="/#social" className="text-muted-foreground hover:text-primary transition-colors">Social Media</a>
               </li>
               <li>
-                <Link href="/servicos#consultoria">
-                  <a className="text-muted-foreground hover:text-primary transition-colors">Consultoria Estratégica</a>
-                </Link>
+                <a href="/#consultoria" className="text-muted-foreground hover:text-primary transition-colors">Consultoria Estratégica</a>
               </li>
             </ul>
           </div>
@@ -133,21 +118,23 @@ export default function Footer() {
           </div>
         </div>
 
-	        <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-center gap-4">
-          <p className="text-sm text-muted-foreground text-center md:text-left">
+	        <div className="border-t border-border pt-8 flex flex-col items-center justify-center gap-6">
+          <div className="flex items-center gap-6 text-sm justify-center">
+            <button onClick={() => openModal('privacy')} className="text-muted-foreground hover:text-primary transition-colors">
+              Política de Privacidade
+            </button>
+            <span className="text-muted-foreground/30">|</span>
+            <button onClick={() => openModal('terms')} className="text-muted-foreground hover:text-primary transition-colors">
+              Termos de Uso
+            </button>
+            <span className="text-muted-foreground/30">|</span>
+            <button onClick={() => openModal('cookies')} className="text-muted-foreground hover:text-primary transition-colors">
+              Política de Cookies
+            </button>
+          </div>
+          <p className="text-sm text-muted-foreground text-center">
             &copy; {currentYear} Apezato Marketing. Todos os direitos reservados.
           </p>
-<div className="flex items-center gap-6 text-sm mx-auto md:mx-0">
-		            <button onClick={() => openModal('privacy')} className="text-muted-foreground hover:text-primary transition-colors">
-		              🔐 Privacidade
-		            </button>
-		            <button onClick={() => openModal('terms')} className="text-muted-foreground hover:text-primary transition-colors">
-		              📄 Termos de Uso
-		            </button>
-		            <button onClick={() => openModal('cookies')} className="text-muted-foreground hover:text-primary transition-colors">
-		              🍪 Política de Cookies
-		            </button>
-		          </div>
         </div>
       </div>
     </footer>

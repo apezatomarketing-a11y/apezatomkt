@@ -35,9 +35,9 @@ export default function Sobre() {
             viewport={{ once: true }}
           >
 <img 
-              src="/images/danielle-apezato-sobre.jpeg" 
+              src="/images/DanielleApezato(fotosobre).jpeg" 
               alt="Danielle Apezato - Fundadora" 
-              className="rounded-2xl shadow-2xl border border-border w-full object-cover aspect-[4/3]"
+              className="rounded-2xl shadow-2xl border border-border w-full object-cover aspect-auto"
             />
           </motion.div>
           <motion.div
