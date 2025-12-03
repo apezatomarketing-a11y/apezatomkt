@@ -20,16 +20,10 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     }
 
     // Usar a API do Google Gemini
-    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "AIzaSyBhNayBy4hKvIREEnCrg9wPSx4r-uKZifo"; // Chave fornecida pelo usuário
+	    const GEMINI_API_KEY = process.env.GEMINI_API_KEY; // Chave fornecida pelo usuário
     const GEMINI_MODEL = "gemini-2.5-flash";
     const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
-    const response = await fetch(GEMINI_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // A autorização é feita via query parameter 'key' no Gemini
-      },
 // O prompt do sistema será injetado no primeiro user message.
     const systemPrompt = `Você é a Assistente IA da Apezato Marketing, uma agência de marketing digital especializada em estratégia 4D, tráfego pago, SEO e desenvolvimento web. 
             
@@ -113,23 +107,22 @@ Você deve:
       },
     };
 
-    const response = await fetch(GEMINI_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // A autorização é feita via query parameter 'key' no Gemini
-      },
-      body: JSON.stringify(requestBody),
-
-
-
-    if (!response.ok) {
-      const error = await response.json();
+	    const apiResponse = await fetch(GEMINI_URL, {
+	      method: "POST",
+	      headers: {
+	        "Content-Type": "application/json",
+	        // A autorização é feita via query parameter 'key' no Gemini
+	      },
+	      body: JSON.stringify(requestBody),
+	    });
+	
+	    if (!apiResponse.ok) {
+      const error = await apiResponse.json();
       console.error("Erro da API:", error);
       throw new Error("Erro ao conectar com a API de IA");
     }
 
-    const data = await response.json();
+    const data = await apiResponse.json();
     const reply = data.candidates[0].content.parts[0].text;
 
     return {
