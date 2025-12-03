@@ -24,16 +24,16 @@ export default function Footer() {
               Estratégia digital que transforma sua marca em autoridade e vendas. Metodologia 4D exclusiva para escalar negócios B2B e Saúde.
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://www.tiktok.com/@apezatomarketing" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300">
+              <a href="https://www.tiktok.com/@apezatomarketing" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 hover:-translate-y-1 cursor-pointer">
                 <TikTokIcon className="w-5 h-5" />
               </a>
-              <a href="https://www.instagram.com/danielleapezatomktdigital/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300">
+              <a href="https://www.instagram.com/danielleapezatomktdigital/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 hover:-translate-y-1 cursor-pointer">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://br.linkedin.com/in/danielle-apezato-785ab3305" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300">
+              <a href="https://br.linkedin.com/in/danielle-apezato-785ab3305" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 hover:-translate-y-1 cursor-pointer">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300">
+              <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 hover:-translate-y-1 cursor-pointer">
                 <WhatsappIcon className="w-5 h-5" />
               </a>
             </div>

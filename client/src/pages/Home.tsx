@@ -337,9 +337,11 @@ export default function Home() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
             Não deixe sua empresa estagnada. Agende agora uma consultoria estratégica gratuita e descubra o potencial oculto do seu negócio.
           </p>
-          <Button size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 h-16 px-10 text-xl font-bold animate-pulse hover:animate-none transition-all hover:scale-105">
-            Agendar Consultoria Gratuita
-          </Button>
+          <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consultoria%20gratuita%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener noreferrer">
+            <Button size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 h-16 px-10 text-xl font-bold animate-pulse hover:animate-none transition-all hover:scale-105">
+              Agendar Consultoria Gratuita
+            </Button>
+          </a>
         </div>
       </section>
     </Layout>
