@@ -127,19 +127,21 @@ return new Response(JSON.stringify({ reply }), {
           status: 200,
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
           },
         });
 	  } catch (error) {
 	    console.error("Erro ao processar chat:", error);
-	return new Response(JSON.stringify({
-	          reply:
-	            "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
-	        }), {
-	          status: 500,
-	          headers: {
-	            "Content-Type": "application/json",
-	          },
-	        });
+return new Response(JSON.stringify({
+          reply:
+            "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
+        }), {
+          status: 500,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        });
 	}
 
 }
