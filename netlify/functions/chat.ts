@@ -120,33 +120,43 @@ Responda sempre em português brasileiro, de forma clara e profissional.`;
       parts: [{ text: message }],
     });
 
+    console.log("Chamando API Gemini com", contents.length, "mensagens");
+
     // Fazer a chamada para a API do Google Gemini
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`;
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
     
+    const requestBody = {
+      contents: contents,
+      systemInstruction: {
+        parts: [{ text: systemPrompt }],
+      },
+      generationConfig: {
+        temperature: 0.7,
+        maxOutputTokens: 500,
+      },
+    };
+
+    console.log("Request body preparado");
+
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        contents: contents,
-        systemInstruction: {
-          parts: [{ text: systemPrompt }],
-        },
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 500,
-        },
-      }),
+      body: JSON.stringify(requestBody),
     });
+
+    console.log("Response status:", response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Erro da API Gemini:", errorText);
-      throw new Error(`API Error: ${response.status}`);
+      throw new Error(`API Error: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json();
+    console.log("Response recebida com sucesso");
+    
     const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, não consegui processar sua mensagem.";
 
     return {
@@ -156,12 +166,16 @@ Responda sempre em português brasileiro, de forma clara e profissional.`;
         "Content-Type": "application/json",
       },
     };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Erro ao processar chat:", error);
+    console.error("Error message:", error.message);
+    console.error("Error stack:", error.stack);
+    
     return {
       statusCode: 500,
       body: JSON.stringify({
         reply: "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
+        error: error.message,
       }),
       headers: {
         "Content-Type": "application/json",
