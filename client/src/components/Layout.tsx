@@ -2,6 +2,7 @@ import Chatbot from './Chatbot';
 import Footer from './Footer';
 import Header from './Header';
 import ScrollToTop from './ScrollToTop';
+import FloatingWhatsapp from './FloatingWhatsapp';
 import AnimatedBackground from './AnimatedBackground';
 
 interface LayoutProps {
@@ -18,6 +19,7 @@ export default function Layout({ children }: LayoutProps) {
       </main>
       <Footer />
       <ScrollToTop />
+      <FloatingWhatsapp />
       <Chatbot />
     </div>
   );
