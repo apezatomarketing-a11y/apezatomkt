@@ -1,4 +1,5 @@
 import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
+import { GoogleGenAI } from '@google/genai'
 
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
   // Tratar requisições OPTIONS (CORS Preflight)
@@ -35,12 +36,12 @@ return new Response(JSON.stringify({ error: "Mensagem inválida" }), {
     });
     }
 
-    // Usar a API do Google Gemini
-	    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.OPENAI_API_KEY; // Tentativa de compatibilidade com a chave antiga
-    const GEMINI_MODEL = "gemini-1.5-flash";
-    const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+    // Usar o SDK do Google Gemini
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.OPENAI_API_KEY; // Tentativa de compatibilidade com a chave antiga
+    const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+    const GEMINI_MODEL = "gemini-2.5-flash"; // Usando o modelo mais recente e eficiente
 
-// O prompt do sistema será enviado como um "part" no primeiro user message.
+// O prompt do sistema será usado como systemInstruction no SDK do Gemini.
     const systemPrompt = `Você é a Assistente IA da Apezato Marketing, uma agência de marketing digital especializada em estratégia 4D, tráfego pago, SEO e desenvolvimento web. 
             
 Informações sobre a Apezato Marketing:
@@ -100,62 +101,27 @@ Você deve:
     
     Responda sempre em português brasileiro, de forma clara e profissional.`;
 
-    // Mapear o histórico de conversação para o formato Gemini
+    // Mapear o histórico de conversação para o formato Gemini (SDK)
     const geminiHistory = (conversationHistory || []).map((msg: any) => ({
       role: msg.sender === "user" ? "user" : "model", // Gemini usa 'model' para o assistente
       parts: [{ text: msg.text }],
     }));
 
-    // Adicionar a nova mensagem do usuário
-    const newMessage = {
-      role: "user",
-      parts: [{ text: message }],
-    };
-
     // O histórico completo é a concatenação do histórico anterior e a nova mensagem
-    const fullConversation = [...geminiHistory, newMessage];
+    const fullConversation = [...geminiHistory, { role: "user", parts: [{ text: message }] }];
 
-    // O prompt do sistema deve ser enviado como um parâmetro separado (systemInstruction)
-    // Mas como estamos usando a API REST, vamos injetar no primeiro user message,
-    // garantindo que o histórico seja mantido.
-
-    // A API REST do Gemini (generateContent) não suporta systemInstruction.
-    // A melhor prática é injetar o systemPrompt no primeiro user message.
-    // Como o histórico está sendo enviado, o primeiro item com role "user"
-    // será a primeira mensagem do usuário na conversa.
-
-    // Se o histórico estiver vazio, a primeira mensagem é a atual.
-    if (fullConversation.length === 1) {
-      fullConversation[0].parts[0].text = systemPrompt + "\n\n" + fullConversation[0].parts[0].text;
-    }
-
-    const requestBody = {
+    // A API do Gemini (SDK) suporta systemInstruction e o array de contents.
+    const response = await ai.models.generateContent({
+      model: GEMINI_MODEL,
       contents: fullConversation,
       config: {
+        systemInstruction: systemPrompt,
         temperature: 0.7,
         maxOutputTokens: 500,
       },
-    };
+    });
 
-	    const apiResponse = await fetch(GEMINI_URL, {
-	      method: "POST",
-	      headers: {
-	        "Content-Type": "application/json",
-	        // A autorização é feita via query parameter 'key' no Gemini
-	      },
-	      body: JSON.stringify(requestBody),
-	    });
-	
-	    if (!apiResponse.ok) {
-      const error = await apiResponse.json();
-      console.error("Erro da API:", error);
-      console.error("Status:", apiResponse.status);
-      console.error("URL:", GEMINI_URL);
-      throw new Error(`Erro ao conectar com a API de IA: ${JSON.stringify(error)}`);
-    }
-
-    const data = await apiResponse.json();
-    const reply = data.candidates[0].content.parts[0].text;
+    const reply = response.text;
 
 return new Response(JSON.stringify({ reply }), {
           status: 200,
@@ -165,16 +131,16 @@ return new Response(JSON.stringify({ reply }), {
         });
 	  } catch (error) {
 	    console.error("Erro ao processar chat:", error);
-return new Response(JSON.stringify({
-          reply:
-            "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
-        }), {
-          status: 500,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-}
+	return new Response(JSON.stringify({
+	          reply:
+	            "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
+	        }), {
+	          status: 500,
+	          headers: {
+	            "Content-Type": "application/json",
+	          },
+	        });
+	}
 
 }
 
