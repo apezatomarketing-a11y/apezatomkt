@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ModalProvider } from "@/components/ModalProvider";
 import Contato from "@/pages/Contato";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/NotFound";
@@ -29,10 +30,12 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <TooltipProvider>
-          <Toaster position="top-right" richColors />
-          <Router />
-        </TooltipProvider>
+        <ModalProvider>
+          <TooltipProvider>
+            <Toaster position="top-right" richColors />
+            <Router />
+          </TooltipProvider>
+        </ModalProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );
