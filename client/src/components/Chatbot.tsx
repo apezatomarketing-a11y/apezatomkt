@@ -107,11 +107,8 @@ export default function Chatbot() {
                 <span className="font-bold text-lg">A</span>
               </div>
               <div>
-                <h3 className="font-bold text-sm">Apezato IA</h3>
-                <p className="text-xs opacity-80 flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  Online agora
-                </p>
+                <h3 className="font-bold text-sm">Assistente IA</h3>
+                <p className="text-xs opacity-80">Apezato Marketing</p>
               </div>
             </div>
 

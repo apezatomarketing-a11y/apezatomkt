@@ -28,21 +28,27 @@ export default function Header() {
       name: 'Serviços',
       path: '/servicos',
       dropdown: [
-        { name: 'Criação de Sites', path: '/servicos#sites' },
-        { name: 'Tráfego Pago', path: '/servicos#trafego' },
-        { name: 'SEO & Conteúdo', path: '/servicos#seo' },
-        { name: 'Social Media', path: '/servicos#social' },
-        { name: 'Consultoria Estratégica', path: '/servicos#consultoria' },
+        { name: 'Consultoria de Marketing Digital', path: '/servicos#consultoria-marketing' },
+        { name: 'Gerenciamento de Redes Sociais', path: '/servicos#redes-sociais' },
+        { name: 'Calendário de Conteúdo', path: '/servicos#calendario-conteudo' },
+        { name: 'Análise de Perfil e Comportamento', path: '/servicos#analise-perfil' },
+        { name: 'Mentorias Estratégicas', path: '/servicos#mentorias' },
+        { name: 'Gestão de Tráfego Pago', path: '/servicos#trafego-pago' },
+        { name: 'Edição de Vídeos Profissional', path: '/servicos#edicao-videos' },
+        { name: 'Identidade Visual e Branding', path: '/servicos#branding' },
       ],
     },
     {
       name: 'Produtos',
       path: '/produtos',
       dropdown: [
-        { name: 'E-book: Tráfego Pago', path: '/produtos#produto-1' },
-        { name: 'Pack de Templates', path: '/produtos#produto-2' },
-        { name: 'Consultoria Express', path: '/produtos#produto-3' },
-        { name: 'Checklist de SEO 2025', path: '/produtos#produto-4' },
+        { name: 'Pack de Posts', path: '/produtos#pack-posts' },
+        { name: 'Identidade Visual Completa', path: '/produtos#identidade-visual' },
+        { name: 'Criação de Logotipo', path: '/produtos#logotipo' },
+        { name: 'Mentoria Express (1h30)', path: '/produtos#mentoria-express' },
+        { name: 'Análise de Perfil Completa', path: '/produtos#analise-perfil' },
+        { name: 'Landing Page Profissional', path: '/produtos#landing-page' },
+        { name: 'Site Institucional (até 5 páginas)', path: '/produtos#site-institucional' },
       ],
     },
     { name: 'Contato', path: '/contato' },
@@ -75,7 +81,7 @@ export default function Header() {
               onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <Link href={item.path === '/' || item.path === '/sobre' || item.path === '/contato' || item.path === '/suporte' ? '/#' : item.path}>
+              <Link href={item.path}>
                 <a
                   className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary ${
                     location === item.path ? 'text-primary' : 'text-foreground/80'

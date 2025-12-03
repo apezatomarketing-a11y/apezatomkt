@@ -1,45 +1,72 @@
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { BookOpen, Download, MonitorPlay } from 'lucide-react';
+import { BookOpen, Palette, Sparkles, MessageSquare, BarChart3, Globe, Layout as LayoutIcon } from 'lucide-react';
 
 export default function Produtos() {
   const products = [
     {
-      id: 1,
-      title: 'E-book: Guia Definitivo do Tráfego Pago',
-      desc: 'Aprenda a criar campanhas que vendem de verdade. Do zero ao avançado.',
-      price: 'A partir de R$ 47,90',
-      icon: BookOpen,
-      category: 'E-book',
-      whatsappMessage: 'Olá, gostaria de solicitar orçamento para o E-book: Guia Definitivo do Tráfego Pago.',
-    },
-    {
-      id: 2,
-      title: 'Pack de Templates para Social Media',
-      desc: 'Mais de 100 templates editáveis no Canva para profissionalizar seu Instagram.',
-      price: 'A partir de R$ 97,00',
-      icon: Download,
-      category: 'Templates',
-      whatsappMessage: 'Olá, gostaria de solicitar orçamento para o Pack de Templates para Social Media.',
-    },
-    {
-      id: 3,
-      title: 'Consultoria Express (1h)',
-      desc: 'Uma hora de mentoria focada para destravar seu negócio digital.',
+      id: 'pack-posts',
+      title: 'Pack de Posts',
+      desc: 'Pacote completo de posts profissionais para redes sociais, com design exclusivo e estratégia de conteúdo alinhada ao seu negócio.',
       price: 'A partir de R$ 297,00',
-      icon: MonitorPlay,
-      category: 'Consultoria',
-      whatsappMessage: 'Olá, gostaria de solicitar orçamento para a Consultoria Express (1h).',
+      icon: Sparkles,
+      category: 'Social Media',
+      whatsappMessage: 'Olá, gostaria de solicitar orçamento para o Pack de Posts.',
     },
     {
-      id: 4,
-      title: 'Checklist de SEO 2025',
-      desc: 'O passo a passo completo para colocar seu site na primeira página do Google.',
-      price: 'Gratuito',
-      icon: BookOpen,
-      category: 'Material Rico',
-      whatsappMessage: 'Olá, gostaria de solicitar o Checklist de SEO 2025.',
+      id: 'identidade-visual',
+      title: 'Identidade Visual Completa',
+      desc: 'Desenvolvimento completo de identidade visual profissional, incluindo logotipo, paleta de cores, tipografia e manual de aplicação.',
+      price: 'A partir de R$ 1.497,00',
+      icon: Palette,
+      category: 'Branding',
+      whatsappMessage: 'Olá, gostaria de solicitar orçamento para Identidade Visual Completa.',
+    },
+    {
+      id: 'logotipo',
+      title: 'Criação de Logotipo',
+      desc: 'Desenvolvimento de logotipo profissional e exclusivo para sua marca, com até 3 propostas e revisões ilimitadas.',
+      price: 'A partir de R$ 497,00',
+      icon: Palette,
+      category: 'Design',
+      whatsappMessage: 'Olá, gostaria de solicitar orçamento para Criação de Logotipo.',
+    },
+    {
+      id: 'mentoria-express',
+      title: 'Mentoria Express (1h30)',
+      desc: 'Sessão de mentoria personalizada de 1h30 com especialista em marketing digital para resolver desafios específicos do seu negócio.',
+      price: 'A partir de R$ 397,00',
+      icon: MessageSquare,
+      category: 'Consultoria',
+      whatsappMessage: 'Olá, gostaria de solicitar orçamento para Mentoria Express (1h30).',
+    },
+    {
+      id: 'analise-perfil',
+      title: 'Análise de Perfil Completa',
+      desc: 'Análise profunda do seu perfil nas redes sociais com relatório detalhado de métricas, oportunidades e plano de ação estratégico.',
+      price: 'A partir de R$ 247,00',
+      icon: BarChart3,
+      category: 'Análise',
+      whatsappMessage: 'Olá, gostaria de solicitar orçamento para Análise de Perfil Completa.',
+    },
+    {
+      id: 'landing-page',
+      title: 'Landing Page Profissional',
+      desc: 'Desenvolvimento de landing page de alta conversão, responsiva e otimizada para SEO, com design exclusivo e foco em resultados.',
+      price: 'A partir de R$ 997,00',
+      icon: Globe,
+      category: 'Web',
+      whatsappMessage: 'Olá, gostaria de solicitar orçamento para Landing Page Profissional.',
+    },
+    {
+      id: 'site-institucional',
+      title: 'Site Institucional (até 5 páginas)',
+      desc: 'Site institucional completo com até 5 páginas, design responsivo, otimização para buscadores e integração com redes sociais.',
+      price: 'A partir de R$ 1.997,00',
+      icon: LayoutIcon,
+      category: 'Web',
+      whatsappMessage: 'Olá, gostaria de solicitar orçamento para Site Institucional (até 5 páginas).',
     },
   ];
 
@@ -52,7 +79,7 @@ export default function Produtos() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-heading font-bold mb-6"
           >
-            Produtos Digitais
+            Nossos Produtos
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -60,7 +87,7 @@ export default function Produtos() {
             transition={{ delay: 0.1 }}
             className="text-xl text-muted-foreground max-w-3xl mx-auto"
           >
-            Ferramentas e conhecimentos práticos para acelerar seu crescimento.
+            Produtos digitais prontos para usar que vão acelerar o crescimento do seu negócio. Desenvolvidos por especialistas e testados no mercado.
           </motion.p>
         </div>
       </section>
@@ -71,7 +98,7 @@ export default function Produtos() {
             {products.map((product, index) => (
               <motion.div
                 key={product.id}
-                id={`produto-${product.id}`}
+                id={product.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -104,6 +131,20 @@ export default function Produtos() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-primary/5 border-y border-primary/10">
+        <div className="container text-center">
+          <h2 className="text-3xl font-heading font-bold mb-6">Precisa de algo personalizado?</h2>
+          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Desenvolvemos produtos sob medida para atender necessidades específicas do seu negócio. Entre em contato e vamos criar a solução ideal para você.
+          </p>
+          <a href="https://wa.me/5512991895547?text=Olá, gostaria de conversar sobre um produto personalizado." target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="lg" className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+              Falar com Especialista
+            </Button>
+          </a>
         </div>
       </section>
     </Layout>

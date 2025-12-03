@@ -34,10 +34,10 @@ export default function Sobre() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-<img 
-              src="/images/DanielleApezato(fotosobre).jpeg" 
+            <img 
+              src="/images/danielle.jpg" 
               alt="Danielle Apezato - Fundadora" 
-              className="rounded-2xl shadow-2xl border border-border w-full object-cover aspect-auto"
+              className="rounded-2xl shadow-2xl border border-border w-full h-auto object-contain"
             />
           </motion.div>
           <motion.div

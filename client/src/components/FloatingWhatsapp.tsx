@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import WhatsappIcon from './WhatsappIcon';
 
 export default function FloatingWhatsapp() {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,7 +32,7 @@ export default function FloatingWhatsapp() {
           className="fixed bottom-6 right-6 z-40 p-4 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition-colors duration-300 group"
           aria-label="Abrir WhatsApp"
         >
-          <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+          <WhatsappIcon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
         </motion.a>
       )}
     </AnimatePresence>

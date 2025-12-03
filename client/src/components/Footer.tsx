@@ -71,19 +71,28 @@ export default function Footer() {
             <h3 className="font-heading font-bold text-lg mb-6">Serviços</h3>
             <ul className="flex flex-col gap-3">
               <li>
-                <a href="/#sites" className="text-muted-foreground hover:text-primary transition-colors">Criação de Sites</a>
+                <a href="/servicos#consultoria-marketing" className="text-muted-foreground hover:text-primary transition-colors">Consultoria de Marketing Digital</a>
               </li>
               <li>
-                <a href="/#trafego" className="text-muted-foreground hover:text-primary transition-colors">Tráfego Pago</a>
+                <a href="/servicos#redes-sociais" className="text-muted-foreground hover:text-primary transition-colors">Gerenciamento de Redes Sociais</a>
               </li>
               <li>
-                <a href="/#seo" className="text-muted-foreground hover:text-primary transition-colors">SEO & Conteúdo</a>
+                <a href="/servicos#calendario-conteudo" className="text-muted-foreground hover:text-primary transition-colors">Calendário de Conteúdo</a>
               </li>
               <li>
-                <a href="/#social" className="text-muted-foreground hover:text-primary transition-colors">Social Media</a>
+                <a href="/servicos#analise-perfil" className="text-muted-foreground hover:text-primary transition-colors">Análise de Perfil e Comportamento</a>
               </li>
               <li>
-                <a href="/#consultoria" className="text-muted-foreground hover:text-primary transition-colors">Consultoria Estratégica</a>
+                <a href="/servicos#mentorias" className="text-muted-foreground hover:text-primary transition-colors">Mentorias Estratégicas</a>
+              </li>
+              <li>
+                <a href="/servicos#trafego-pago" className="text-muted-foreground hover:text-primary transition-colors">Gestão de Tráfego Pago</a>
+              </li>
+              <li>
+                <a href="/servicos#edicao-videos" className="text-muted-foreground hover:text-primary transition-colors">Edição de Vídeos Profissional</a>
+              </li>
+              <li>
+                <a href="/servicos#branding" className="text-muted-foreground hover:text-primary transition-colors">Identidade Visual e Branding</a>
               </li>
             </ul>
           </div>
