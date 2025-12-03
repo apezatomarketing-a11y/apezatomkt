@@ -2,17 +2,7 @@ import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import { GoogleGenAI } from '@google/genai'
 
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
-  // Tratar requisições OPTIONS (CORS Preflight)
-  if (event.httpMethod === "OPTIONS") {
-    return new Response(null, {
-      status: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-    });
-  }
+
 
   // Apenas aceitar POST requests
   if (event.httpMethod !== "POST") {
@@ -127,7 +117,7 @@ return new Response(JSON.stringify({ reply }), {
           status: 200,
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
+
           },
         });
 	  } catch (error) {
@@ -139,7 +129,7 @@ return new Response(JSON.stringify({
           status: 500,
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
+
           },
         });
 	}
