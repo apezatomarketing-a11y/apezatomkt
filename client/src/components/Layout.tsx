@@ -3,6 +3,7 @@ import Footer from './Footer';
 import Header from './Header';
 import ScrollToTop from './ScrollToTop';
 import { ModalProvider } from './ModalProvider';
+import AnimatedBackground from './AnimatedBackground';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,9 +12,10 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   return (
     <ModalProvider>
-      <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300 font-sans selection:bg-primary/30 selection:text-primary">
+      <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300 font-sans selection:bg-primary/30 selection:text-primary relative">
+        <AnimatedBackground />
         <Header />
-        <main className="flex-1 pt-20">
+        <main className="flex-1 pt-20 relative z-10">
           {children}
         </main>
         <Footer />

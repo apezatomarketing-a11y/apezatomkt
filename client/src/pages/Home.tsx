@@ -4,20 +4,11 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { ArrowRight, BarChart3, Code2, PenTool, Play, Rocket, Search, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import Particles, { initParticlesEngine } from '@tsparticles/react';
-import { loadSlim } from '@tsparticles/slim';
+
 
 export default function Home() {
   const { openModal } = useModal();
-  const [init, setInit] = useState(false);
 
-  useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -38,81 +29,7 @@ export default function Home() {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20">
-        {/* Particles Background */}
-        {init && (
-          <div className="absolute inset-0 z-0 opacity-30 dark:opacity-50">
-            <Particles
-              id="tsparticles"
-              options={{
-                background: {
-                  color: {
-                    value: "transparent",
-                  },
-                },
-                fpsLimit: 120,
-                interactivity: {
-                  events: {
-                    onClick: {
-                      enable: true,
-                      mode: "push",
-                    },
-                    onHover: {
-                      enable: true,
-                      mode: "repulse",
-                    },
-                  },
-                  modes: {
-                    push: {
-                      quantity: 4,
-                    },
-                    repulse: {
-                      distance: 200,
-                      duration: 0.4,
-                    },
-                  },
-                },
-                particles: {
-                  color: {
-                    value: "#10b981",
-                  },
-                  links: {
-                    color: "#059669",
-                    distance: 150,
-                    enable: true,
-                    opacity: 0.5,
-                    width: 1,
-                  },
-                  move: {
-                    direction: "none",
-                    enable: true,
-                    outModes: {
-                      default: "bounce",
-                    },
-                    random: false,
-                    speed: 1,
-                    straight: false,
-                  },
-                  number: {
-                    density: {
-                      enable: true,
-                    },
-                    value: 80,
-                  },
-                  opacity: {
-                    value: 0.5,
-                  },
-                  shape: {
-                    type: "circle",
-                  },
-                  size: {
-                    value: { min: 1, max: 5 },
-                  },
-                },
-                detectRetina: true,
-              }}
-            />
-          </div>
-        )}
+
 
         <div className="container relative z-10 grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
