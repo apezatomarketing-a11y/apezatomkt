@@ -1,8 +1,10 @@
 import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Tiktok, Whatsapp } from 'lucide-react';
 import { Link } from 'wouter';
+import { useModal } from './ModalProvider';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { openModal } = useModal();
 
   return (
     <footer className="bg-card border-t border-border pt-16 pb-8">
@@ -133,17 +135,17 @@ export default function Footer() {
           <p className="text-sm text-muted-foreground text-center md:text-left">
             &copy; {currentYear} Apezato Marketing. Todos os direitos reservados.
           </p>
-	          <div className="flex items-center gap-6 text-sm mx-auto md:mx-0">
-	            <button onClick={() => alert('Abrir modal de Política de Privacidade')} className="text-muted-foreground hover:text-primary transition-colors">
-	              🔐 Privacidade
-	            </button>
-	            <button onClick={() => alert('Abrir modal de Termos de Uso')} className="text-muted-foreground hover:text-primary transition-colors">
-	              📄 Termos de Uso
-	            </button>
-	            <button onClick={() => alert('Abrir modal de Política de Cookies')} className="text-muted-foreground hover:text-primary transition-colors">
-	              🍪 Política de Cookies
-	            </button>
-	          </div>
+<div className="flex items-center gap-6 text-sm mx-auto md:mx-0">
+		            <button onClick={() => openModal('privacy')} className="text-muted-foreground hover:text-primary transition-colors">
+		              🔐 Privacidade
+		            </button>
+		            <button onClick={() => openModal('terms')} className="text-muted-foreground hover:text-primary transition-colors">
+		              📄 Termos de Uso
+		            </button>
+		            <button onClick={() => openModal('cookies')} className="text-muted-foreground hover:text-primary transition-colors">
+		              🍪 Política de Cookies
+		            </button>
+		          </div>
         </div>
       </div>
     </footer>

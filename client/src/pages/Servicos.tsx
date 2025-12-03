@@ -88,11 +88,13 @@ export default function Servicos() {
                 ))}
               </ul>
               
-              <div className="pt-4">
-                <Button size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20">
-                  Solicitar Orçamento
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+<div className="pt-4">
+                <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20este%20servi%C3%A7o." target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20">
+                    Solicitar Orçamento
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </a>
               </div>
             </div>
           </motion.div>
@@ -105,9 +107,11 @@ export default function Servicos() {
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             Temos soluções personalizadas para cada tipo de negócio. Entre em contato e vamos desenhar juntos a melhor estratégia para você.
           </p>
-          <Button variant="outline" size="lg" className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-            Falar com Especialista
-          </Button>
+<a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20gostaria%20de%20conversar%20com%20um%20especialista%20sobre%20uma%20solu%C3%A7%C3%A3o%20personalizada." target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="lg" className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+              Falar com Especialista
+            </Button>
+          </a>
         </div>
       </section>
     </Layout>

@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import { useModal } from '@/components/ModalProvider';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { ArrowRight, BarChart3, Code2, PenTool, Play, Rocket, Search, Star } from 'lucide-react';
@@ -7,6 +8,7 @@ import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 
 export default function Home() {
+  const { openModal } = useModal();
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -139,7 +141,7 @@ export default function Home() {
                 </Button>
               </a>
               
-<button onClick={() => alert('Abrir modal com Cases de Sucesso')} className="w-full sm:w-auto rounded-full border border-primary/20 hover:bg-primary/5 hover:border-primary/50 h-14 px-8 text-lg font-semibold group inline-flex items-center justify-center">
+<button onClick={() => openModal('cases')} className="w-full sm:w-auto rounded-full border border-primary/20 hover:bg-primary/5 hover:border-primary/50 h-14 px-8 text-lg font-semibold group inline-flex items-center justify-center">
                 <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
                   <Play className="w-4 h-4 text-primary fill-primary" />
                 </div>
