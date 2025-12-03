@@ -132,23 +132,25 @@ export default function Home() {
             </motion.p>
             
             <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <Button size="lg" className="w-full sm:w-auto rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 h-14 px-8 text-lg font-semibold group">
-                Quero Vender Mais
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+<a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20gostaria%20de%20aumentar%20minhas%20vendas%20com%20a%20Apezato%20Marketing." target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="w-full sm:w-auto rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 h-14 px-8 text-lg font-semibold group">
+                  Quero Vender Mais
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
               
-              <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-full border-primary/20 hover:bg-primary/5 hover:border-primary/50 h-14 px-8 text-lg font-semibold group">
+<button onClick={() => alert('Abrir modal com Cases de Sucesso')} className="w-full sm:w-auto rounded-full border border-primary/20 hover:bg-primary/5 hover:border-primary/50 h-14 px-8 text-lg font-semibold group inline-flex items-center justify-center">
                 <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
                   <Play className="w-4 h-4 text-primary fill-primary" />
                 </div>
                 Ver Cases de Sucesso
-              </Button>
+              </button>
             </motion.div>
             
             <motion.div variants={fadeInUp} className="mt-12 flex items-center justify-center lg:justify-start gap-8 text-sm font-medium text-muted-foreground">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                +50 Projetos Entregues
+                + de 90 Projetos Entregues
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
@@ -200,8 +202,8 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <div className="text-sm font-bold">
-                  <span className="text-primary">98%</span> Satisfação
+<div className="text-sm font-bold">
+                  <span className="text-primary">100%</span> Satisfação
                 </div>
               </div>
             </motion.div>
@@ -290,7 +292,9 @@ export default function Home() {
                 Não entregamos apenas serviços, entregamos um ecossistema de crescimento para sua empresa.
               </p>
             </div>
-            <Button variant="outline" className="rounded-full">Ver Todos os Serviços</Button>
+<a href="/servicos#top" className="inline-flex">
+              <Button variant="outline" className="rounded-full">Ver Todos os Serviços</Button>
+            </a>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">

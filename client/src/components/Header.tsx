@@ -1,4 +1,5 @@
 import { useThemeStore } from '@/lib/store';
+import { Whatsapp } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, Menu, Moon, Sun, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -55,7 +56,10 @@ export default function Header() {
         {/* Logo */}
         <Link href="/">
           <a className="flex items-center gap-2 group">
-            <img src="/images/logo.png" alt="Apezato Marketing Logo" className="h-10 w-auto" />
+            <div className="flex items-center gap-2 group">
+              <img src="/images/logo-small.png" alt="Apezato Marketing Logo" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
+              <span className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary">Apezato Marketing</span>
+            </div>
           </a>
         </Link>
 
@@ -68,7 +72,7 @@ export default function Header() {
               onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <Link href={item.path}>
+              <Link href={item.path === '/' || item.path === '/sobre' || item.path === '/contato' || item.path === '/suporte' ? '/#' : item.path}>
                 <a
                   className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary ${
                     location === item.path ? 'text-primary' : 'text-foreground/80'
@@ -134,9 +138,12 @@ export default function Header() {
             </AnimatePresence>
           </button>
           
-          <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:scale-105 active:scale-95 font-semibold">
-            Agendar Consultoria
-          </Button>
+          <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consultoria%20gratuita%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener noreferrer">
+            <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:scale-105 active:scale-95 font-semibold flex items-center gap-2">
+              <Whatsapp className="w-4 h-4" />
+              Agendar Consultoria
+            </Button>
+          </a>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -214,9 +221,12 @@ export default function Header() {
                 ))}
                 
                 <div className="mt-auto pt-8">
-                  <Button className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 font-semibold py-6">
-                    Agendar Consultoria
-                  </Button>
+                  <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consultoria%20gratuita%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener noreferrer" className="w-full">
+                    <Button className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 font-semibold py-6 flex items-center justify-center gap-2">
+                      <Whatsapp className="w-5 h-5" />
+                      Agendar Consultoria
+                    </Button>
+                  </a>
                 </div>
               </div>
             </motion.div>

@@ -34,9 +34,9 @@ export default function Sobre() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <img 
-              src="/images/Danielle Apezato (foto sobre).jpeg" 
-              alt="Equipe Apezato" 
+<img 
+              src="/images/danielle-apezato-sobre.jpeg" 
+              alt="Danielle Apezato - Fundadora" 
               className="rounded-2xl shadow-2xl border border-border w-full object-cover aspect-[4/3]"
             />
           </motion.div>
@@ -71,6 +71,52 @@ export default function Sobre() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+{/* Team Section */}
+      <section className="py-20">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-heading font-bold mb-4">Nossa Equipe</h2>
+            <p className="text-muted-foreground">Profissionais especializados em estratégia digital e crescimento de negócios.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: 'Danielle Apezato',
+                role: 'Fundadora & Estrategista Digital',
+                bio: 'Especialista em Marketing Digital com mais de 10 anos de experiência. Criadora da Metodologia 4D e mentora de empreendedores.',
+              },
+              {
+                name: 'Equipe Técnica',
+                role: 'Desenvolvimento & Otimização',
+                bio: 'Profissionais especializados em desenvolvimento web, SEO e otimização de campanhas de tráfego pago.',
+              },
+              {
+                name: 'Equipe de Atendimento',
+                role: 'Suporte & Relacionamento',
+                bio: 'Dedicados a garantir sua satisfação e fornecer suporte de qualidade em todas as etapas do projeto.',
+              },
+            ].map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="bg-card border border-border rounded-2xl p-8 text-center hover:border-primary transition-colors"
+              >
+                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mb-6 text-white text-2xl font-bold">
+                  {member.name[0]}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{member.name}</h3>
+                <p className="text-primary text-sm font-semibold mb-4">{member.role}</p>
+                <p className="text-muted-foreground leading-relaxed">{member.bio}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

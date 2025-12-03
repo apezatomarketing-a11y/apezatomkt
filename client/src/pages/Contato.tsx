@@ -112,24 +112,29 @@ export default function Contato() {
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-4">
+<div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                       <Phone className="w-6 h-6 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg">Telefone / WhatsApp</h3>
                       <p className="text-muted-foreground">(12) 2023-8569</p>
+                      <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors">
+                        <p className="text-muted-foreground">(12) 99189-5547 (WhatsApp)</p>
+                      </a>
                       <p className="text-sm text-muted-foreground mt-1">Segunda a Sexta, das 9h às 18h.</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-4">
+<div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                       <Mail className="w-6 h-6 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg">E-mail</h3>
-                      <p className="text-muted-foreground">contato@apezato.com</p>
+                      <a href="mailto:apezatomarketing@gmail.com" className="text-primary hover:text-primary/80 transition-colors">
+                        <p className="text-muted-foreground">apezatomarketing@gmail.com</p>
+                      </a>
                       <p className="text-sm text-muted-foreground mt-1">Resposta em até 24 horas úteis.</p>
                     </div>
                   </div>
@@ -141,8 +146,8 @@ export default function Contato() {
                 <div className="absolute inset-0 flex items-center justify-center bg-muted/50 backdrop-blur-sm group-hover:backdrop-blur-none transition-all z-10">
                   <p className="font-bold text-muted-foreground">Mapa Interativo (Google Maps)</p>
                 </div>
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.498776626944!2d-45.9656!3d-23.1896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDExJzIyLjYiUyA0NcKwNTcnNTYuMiJX!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" 
+<iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.0!2d-45.9656!3d-23.1896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cce6c7d0f0f0f1%3A0x0!2zMjPCsDExJzIyLjYiUyA0NcKwNTcnNTYuMiJX!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 
