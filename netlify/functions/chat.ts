@@ -118,7 +118,7 @@ Responda sempre em português brasileiro, de forma clara e profissional.`;
     console.log("Chamando API Gemini");
 
     // Fazer a chamada para a API do Google Gemini usando v1 com gemini-pro
-    const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
+    const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
     
     const requestBody = {
       contents: [{
