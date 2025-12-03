@@ -101,42 +101,36 @@ Você deve:
     
 Responda sempre em português brasileiro, de forma clara e profissional.`;
 
-    // Mapear o histórico de conversação para o formato Gemini
-    const contents: any[] = [];
+    // Construir o prompt completo com histórico
+    let fullPrompt = systemPrompt + "\n\n";
     
     // Adicionar o histórico de conversas
     if (conversationHistory && conversationHistory.length > 0) {
       conversationHistory.forEach((msg: any) => {
-        contents.push({
-          role: msg.sender === "user" ? "user" : "model",
-          parts: [{ text: msg.text }],
-        });
+        const role = msg.sender === "user" ? "Usuário" : "Assistente";
+        fullPrompt += `${role}: ${msg.text}\n`;
       });
     }
     
     // Adicionar a mensagem atual do usuário
-    contents.push({
-      role: "user",
-      parts: [{ text: message }],
-    });
+    fullPrompt += `Usuário: ${message}\nAssistente:`;
 
-    console.log("Chamando API Gemini com", contents.length, "mensagens");
+    console.log("Chamando API Gemini");
 
-    // Fazer a chamada para a API do Google Gemini
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+    // Fazer a chamada para a API do Google Gemini usando v1 com gemini-pro
+    const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
     
     const requestBody = {
-      contents: contents,
-      systemInstruction: {
-        parts: [{ text: systemPrompt }],
-      },
+      contents: [{
+        parts: [{
+          text: fullPrompt
+        }]
+      }],
       generationConfig: {
         temperature: 0.7,
         maxOutputTokens: 500,
       },
     };
-
-    console.log("Request body preparado");
 
     const response = await fetch(apiUrl, {
       method: "POST",
@@ -169,7 +163,6 @@ Responda sempre em português brasileiro, de forma clara e profissional.`;
   } catch (error: any) {
     console.error("Erro ao processar chat:", error);
     console.error("Error message:", error.message);
-    console.error("Error stack:", error.stack);
     
     return {
       statusCode: 500,
