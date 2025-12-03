@@ -69,28 +69,28 @@ export default function Footer() {
             <h3 className="font-heading font-bold text-lg mb-6">Serviços</h3>
             <ul className="flex flex-col gap-3">
               <li>
-                <a href="/servicos#consultoria-marketing" className="text-muted-foreground hover:text-primary transition-colors">Consultoria de Marketing Digital</a>
+                <a href="/servicos#consultoria-marketing" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Consultoria de Marketing Digital</a>
               </li>
               <li>
-                <a href="/servicos#redes-sociais" className="text-muted-foreground hover:text-primary transition-colors">Gerenciamento de Redes Sociais</a>
+                <a href="/servicos#redes-sociais" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Gerenciamento de Redes Sociais</a>
               </li>
               <li>
-                <a href="/servicos#calendario-conteudo" className="text-muted-foreground hover:text-primary transition-colors">Calendário de Conteúdo</a>
+                <a href="/servicos#calendario-conteudo" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Calendário de Conteúdo</a>
               </li>
               <li>
-                <a href="/servicos#analise-perfil" className="text-muted-foreground hover:text-primary transition-colors">Análise de Perfil e Comportamento</a>
+                <a href="/servicos#analise-perfil" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Análise de Perfil e Comportamento</a>
               </li>
               <li>
-                <a href="/servicos#mentorias" className="text-muted-foreground hover:text-primary transition-colors">Mentorias Estratégicas</a>
+                <a href="/servicos#mentorias" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Mentorias Estratégicas</a>
               </li>
               <li>
-                <a href="/servicos#trafego-pago" className="text-muted-foreground hover:text-primary transition-colors">Gestão de Tráfego Pago</a>
+                <a href="/servicos#trafego-pago" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Gestão de Tráfego Pago</a>
               </li>
               <li>
-                <a href="/servicos#edicao-videos" className="text-muted-foreground hover:text-primary transition-colors">Edição de Vídeos Profissional</a>
+                <a href="/servicos#edicao-videos" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Edição de Vídeos Profissional</a>
               </li>
               <li>
-                <a href="/servicos#branding" className="text-muted-foreground hover:text-primary transition-colors">Identidade Visual e Branding</a>
+                <a href="/servicos#branding" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Identidade Visual e Branding</a>
               </li>
             </ul>
           </div>
@@ -127,15 +127,15 @@ export default function Footer() {
 
 	        <div className="border-t border-border pt-8 flex flex-col items-center justify-center gap-6">
           <div className="flex items-center gap-6 text-sm justify-center">
-            <button onClick={() => openModal('privacy')} className="text-muted-foreground hover:text-primary transition-colors">
+            <button onClick={() => openModal('privacy')} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
               Política de Privacidade
             </button>
             <span className="text-muted-foreground/30">|</span>
-            <button onClick={() => openModal('terms')} className="text-muted-foreground hover:text-primary transition-colors">
+            <button onClick={() => openModal('terms')} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
               Termos de Uso
             </button>
             <span className="text-muted-foreground/30">|</span>
-            <button onClick={() => openModal('cookies')} className="text-muted-foreground hover:text-primary transition-colors">
+            <button onClick={() => openModal('cookies')} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
               Política de Cookies
             </button>
           </div>
