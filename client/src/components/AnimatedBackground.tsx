@@ -18,7 +18,7 @@ export default function AnimatedBackground() {
   }
 
   return (
-    <div className="absolute inset-0 z-0 opacity-30 dark:opacity-50">
+    <div className="absolute inset-0 z-0 opacity-30 dark:opacity-50 pointer-events-none">
       <Particles
         id="tsparticles"
         options={{
