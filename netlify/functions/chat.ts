@@ -134,21 +134,17 @@ Você deve:
 
     return {
       statusCode: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ reply }),
-    };
-  } catch (error) {
-    console.error("Erro ao processar chat:", error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        reply:
-          "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
-      }),
-    };
-  }
-};
-
-export { handler };
+      137	      headers: {
+138	        "Content-Type": "application/json",
+139	      },
+140	      body: JSON.stringify({ reply }) as string,
+141	    };
+142	  } catch (error) {
+143	    console.error("Erro ao processar chat:", error);
+144	    return {
+145	      statusCode: 500,
+146	      body: JSON.stringify({
+147	        reply:
+148	          "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
+149	      }) as string,
+150	    };
