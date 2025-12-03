@@ -120,9 +120,6 @@ Você deve:
 
     const requestBody = {
       contents: fullConversation,
-
-    const requestBody = {
-      contents: finalContents,
       config: {
         temperature: 0.7,
         maxOutputTokens: 500,
