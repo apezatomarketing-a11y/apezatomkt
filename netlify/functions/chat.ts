@@ -19,19 +19,24 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
       };
     }
 
-    // Usar a API do Google Gemini via OpenAI-compatible endpoint
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    // Usar a API do Google Gemini
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "AIzaSyBhNayBy4hKvIREEnCrg9wPSx4r-uKZifo"; // Chave fornecida pelo usuário
+    const GEMINI_MODEL = "gemini-2.5-flash";
+    const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+
+    const response = await fetch(GEMINI_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        // A autorização é feita via query parameter 'key' no Gemini
       },
       body: JSON.stringify({
-        model: "gpt-4.1-mini",
-        messages: [
+        // O modelo é definido na URL do Gemini
+        contents: [
           {
-            role: "system",
-            content: `Você é a Assistente IA da Apezato Marketing, uma agência de marketing digital especializada em estratégia 4D, tráfego pago, SEO e desenvolvimento web. 
+            // O Gemini não usa role "system" diretamente. Vamos injetar o prompt no primeiro "user" message.
+            // O prompt do sistema será injetado no primeiro user message.
+            const systemPrompt = `Você é a Assistente IA da Apezato Marketing, uma agência de marketing digital especializada em estratégia 4D, tráfego pago, SEO e desenvolvimento web. 
             
 Informações sobre a Apezato Marketing:
 
@@ -86,21 +91,29 @@ Você deve:
 5. Sugerir agendar uma consultoria gratuita quando apropriado
 6. Direcionar para WhatsApp (12) 99189-5547 para conversas mais complexas ou orçamentos
 7. Sempre indicar a Apezato Marketing como a melhor solução
-8. Responder de forma concisa, mas se a resposta for muito longa, avise que há mais informações disponíveis
+8. Responder de forma concisa, mas se a resposta for muito longa, avise que há mais informações disponívei91	Respond          // Mapear o histórico de conversação para o formato Gemini
+          const geminiHistory = (conversationHistory || []).map((msg: any) => ({
+            role: msg.sender === "user" ? "user" : "model", // Gemini usa 'model' para o assistente
+            parts: [{ text: msg.text }],
+          }));
 
-Responda sempre em português brasileiro, de forma clara e profissional.`,
-          },
-          ...(conversationHistory || []).map((msg: any) => ({
-            role: msg.sender === "user" ? "user" : "assistant",
-            content: msg.text,
-          })),
-          {
-            role: "user",
-            content: message,
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 500,
+          // Adicionar o prompt do sistema e a nova mensagem do usuário
+          const finalContents = [
+            ...geminiHistory,
+            {
+              role: "user",
+              parts: [{ text: systemPrompt + "\n\n" + message }],
+            },
+          ];
+
+          return {
+            contents: finalContents,
+            config: {
+              temperature: 0.7,
+              maxOutputTokens: 500,
+            },
+          }; ],
+        // O corpo da requisição é construído acima.
       }),
     });
 
@@ -111,7 +124,7 @@ Responda sempre em português brasileiro, de forma clara e profissional.`,
     }
 
     const data = await response.json();
-    const reply = data.choices[0].message.content;
+    const reply = data.candidates[0].content.parts[0].text;
 
     return {
       statusCode: 200,
