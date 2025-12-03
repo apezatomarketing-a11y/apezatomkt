@@ -37,7 +37,7 @@ export default function Sobre() {
             <img 
               src="/images/danielle.jpg" 
               alt="Danielle Apezato - Fundadora" 
-              className="rounded-2xl shadow-2xl border border-border w-full h-auto object-contain"
+              className="rounded-2xl shadow-2xl border border-border w-full h-auto object-cover aspect-[3/4]"
             />
           </motion.div>
           <motion.div
