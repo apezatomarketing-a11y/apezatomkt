@@ -24,11 +24,11 @@ return new Response(JSON.stringify({ error: "Mensagem inválida" }), {
     }
 
     // Usar a API do Google Gemini
-	    const GEMINI_API_KEY = process.env.GEMINI_API_KEY; // Chave fornecida pelo usuário
+	    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.OPENAI_API_KEY; // Tentativa de compatibilidade com a chave antiga
     const GEMINI_MODEL = "gemini-1.5-flash";
     const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
-// O prompt do sistema será injetado no primeiro user message.
+// O prompt do sistema será enviado como um "part" no primeiro user message.
     const systemPrompt = `Você é a Assistente IA da Apezato Marketing, uma agência de marketing digital especializada em estratégia 4D, tráfego pago, SEO e desenvolvimento web. 
             
 Informações sobre a Apezato Marketing:
@@ -94,14 +94,32 @@ Você deve:
       parts: [{ text: msg.text }],
     }));
 
-    // Adicionar o prompt do sistema e a nova mensagem do usuário
-    const finalContents = [
-      ...geminiHistory,
-      {
-        role: "user",
-        parts: [{ text: systemPrompt + "\n\n" + message }],
-      },
-    ];
+    // Adicionar a nova mensagem do usuário
+    const newMessage = {
+      role: "user",
+      parts: [{ text: message }],
+    };
+
+    // O histórico completo é a concatenação do histórico anterior e a nova mensagem
+    const fullConversation = [...geminiHistory, newMessage];
+
+    // O prompt do sistema deve ser enviado como um parâmetro separado (systemInstruction)
+    // Mas como estamos usando a API REST, vamos injetar no primeiro user message,
+    // garantindo que o histórico seja mantido.
+
+    // Encontrando o primeiro user message para injetar o systemPrompt
+    const firstUserMessageIndex = fullConversation.findIndex(
+      (content) => content.role === "user"
+    );
+
+    if (firstUserMessageIndex !== -1) {
+      // Injetar o systemPrompt no primeiro user message
+      fullConversation[firstUserMessageIndex].parts[0].text =
+        systemPrompt + "\n\n" + fullConversation[firstUserMessageIndex].parts[0].text;
+    }
+
+    const requestBody = {
+      contents: fullConversation,
 
     const requestBody = {
       contents: finalContents,
