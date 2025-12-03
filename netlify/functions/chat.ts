@@ -25,7 +25,7 @@ return new Response(JSON.stringify({ error: "Mensagem inválida" }), {
 
     // Usar a API do Google Gemini
 	    const GEMINI_API_KEY = process.env.GEMINI_API_KEY; // Chave fornecida pelo usuário
-    const GEMINI_MODEL = "gemini-2.5-flash";
+    const GEMINI_MODEL = "gemini-1.5-flash";
     const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
 // O prompt do sistema será injetado no primeiro user message.
@@ -123,7 +123,9 @@ Você deve:
 	    if (!apiResponse.ok) {
       const error = await apiResponse.json();
       console.error("Erro da API:", error);
-      throw new Error("Erro ao conectar com a API de IA");
+      console.error("Status:", apiResponse.status);
+      console.error("URL:", GEMINI_URL);
+      throw new Error(`Erro ao conectar com a API de IA: ${JSON.stringify(error)}`);
     }
 
     const data = await apiResponse.json();
