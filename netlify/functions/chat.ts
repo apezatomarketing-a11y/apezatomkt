@@ -3,20 +3,24 @@ import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
   // Apenas aceitar POST requests
   if (event.httpMethod !== "POST") {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ error: "Method Not Allowed" }),
-    };
+    return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
+      status: 405,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   }
 
   try {
     const { message, conversationHistory } = JSON.parse(event.body || "{}");
 
     if (!message || typeof message !== "string") {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "Mensagem inválida" }),
-      };
+return new Response(JSON.stringify({ error: "Mensagem inválida" }), {
+      status: 400,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     }
 
     // Usar a API do Google Gemini
