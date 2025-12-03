@@ -1,5 +1,4 @@
 import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
   // Apenas aceitar POST requests
@@ -26,7 +25,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
       };
     }
 
-    // Usar o SDK do Google Gemini
+    // Usar a API do Google Gemini via fetch
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
     
     if (!GEMINI_API_KEY) {
@@ -42,10 +41,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
       };
     }
 
-    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
-
-    // O prompt do sistema será usado como systemInstruction no SDK do Gemini.
+    // O prompt do sistema
     const systemPrompt = `Você é a Assistente IA da Apezato Marketing, uma agência de marketing digital especializada em estratégia 4D, tráfego pago, SEO e desenvolvimento web. 
             
 Informações sobre a Apezato Marketing:
@@ -106,25 +102,52 @@ Você deve:
 Responda sempre em português brasileiro, de forma clara e profissional.`;
 
     // Mapear o histórico de conversação para o formato Gemini
-    const history = (conversationHistory || []).map((msg: any) => ({
-      role: msg.sender === "user" ? "user" : "model",
-      parts: [{ text: msg.text }],
-    }));
-
-    // Criar chat com histórico
-    const chat = model.startChat({
-      history: history,
-      generationConfig: {
-        temperature: 0.7,
-        maxOutputTokens: 500,
-      },
-      systemInstruction: systemPrompt,
+    const contents: any[] = [];
+    
+    // Adicionar o histórico de conversas
+    if (conversationHistory && conversationHistory.length > 0) {
+      conversationHistory.forEach((msg: any) => {
+        contents.push({
+          role: msg.sender === "user" ? "user" : "model",
+          parts: [{ text: msg.text }],
+        });
+      });
+    }
+    
+    // Adicionar a mensagem atual do usuário
+    contents.push({
+      role: "user",
+      parts: [{ text: message }],
     });
 
-    // Enviar mensagem e obter resposta
-    const result = await chat.sendMessage(message);
-    const response = await result.response;
-    const reply = response.text();
+    // Fazer a chamada para a API do Google Gemini
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`;
+    
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contents: contents,
+        systemInstruction: {
+          parts: [{ text: systemPrompt }],
+        },
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 500,
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Erro da API Gemini:", errorText);
+      throw new Error(`API Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, não consegui processar sua mensagem.";
 
     return {
       statusCode: 200,
