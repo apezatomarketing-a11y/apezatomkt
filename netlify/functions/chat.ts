@@ -125,22 +125,23 @@ Você deve:
     const data = await apiResponse.json();
     const reply = data.candidates[0].content.parts[0].text;
 
-    return {
-	      statusCode: 200,
-	      headers: {
-	        "Content-Type": "application/json",
-	      },
-	      body: JSON.stringify({ reply }) as string,
-	    };
+return new Response(JSON.stringify({ reply }), {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 	  } catch (error) {
 	    console.error("Erro ao processar chat:", error);
-	    return {
-	      statusCode: 500,
-	      body: JSON.stringify({
-	        reply:
-	          "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
-	      }) as string,
-	    };
+return new Response(JSON.stringify({
+          reply:
+            "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
+        }), {
+          status: 500,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 }
 
 }
