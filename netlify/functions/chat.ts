@@ -27,7 +27,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gemini-2.5-flash",
+        model: "gpt-4.1-mini",
         messages: [
           {
             role: "system",
