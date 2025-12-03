@@ -143,4 +143,6 @@ Você deve:
 	    };
 }
 
+}
+
 export default handler;
