@@ -3,10 +3,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { MessageSquare, Send, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Button } from './ui/button';
+import { toast } from 'sonner';
 
 export default function Chatbot() {
   const { isOpen, toggleChat, messages, addMessage } = useChatStore();
   const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -17,17 +19,44 @@ export default function Chatbot() {
     scrollToBottom();
   }, [messages, isOpen]);
 
-  const handleSendMessage = (e?: React.FormEvent) => {
+  const handleSendMessage = async (e?: React.FormEvent) => {
     e?.preventDefault();
-    if (!inputValue.trim()) return;
+    if (!inputValue.trim() || isLoading) return;
 
-    addMessage(inputValue, 'user');
+    const userMessage = inputValue;
+    addMessage(userMessage, 'user');
     setInputValue('');
+    setIsLoading(true);
 
-    // Simulate bot response
-    setTimeout(() => {
-      addMessage('Obrigado pelo seu contato! Um de nossos especialistas responderá em breve. Enquanto isso, gostaria de agendar uma consultoria gratuita?', 'bot');
-    }, 1000);
+    try {
+      // Chamar a API do backend para processar com Google Gemini
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: userMessage,
+          conversationHistory: messages,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao conectar com o chatbot');
+      }
+
+      const data = await response.json();
+      addMessage(data.reply, 'bot');
+    } catch (error) {
+      console.error('Erro ao enviar mensagem:', error);
+      addMessage(
+        'Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp.',
+        'bot'
+      );
+      toast.error('Erro ao conectar com o chatbot');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -88,6 +117,21 @@ export default function Chatbot() {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-muted/30">
+              {messages.length === 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex flex-col items-center justify-center h-full text-center"
+                >
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <MessageSquare className="w-6 h-6 text-primary" />
+                  </div>
+                  <p className="text-sm font-medium mb-2">Olá! 👋</p>
+                  <p className="text-xs text-muted-foreground">
+                    Sou a IA da Apezato. Posso ajudar você com dúvidas sobre nossos serviços, metodologia 4D, preços e muito mais!
+                  </p>
+                </motion.div>
+              )}
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}
@@ -106,6 +150,21 @@ export default function Chatbot() {
                   </div>
                 </motion.div>
               ))}
+              {isLoading && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex justify-start"
+                >
+                  <div className="bg-card border border-border text-foreground rounded-2xl rounded-tl-none shadow-sm p-3 flex items-center gap-2">
+                    <div className="flex gap-1">
+                      <span className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" />
+                      <span className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: '0.2s' }} />
+                      <span className="w-2 h-2 rounded-full bg-muted-foreground animate-bounce" style={{ animationDelay: '0.4s' }} />
+                    </div>
+                  </div>
+                </motion.div>
+              )}
               <div ref={messagesEndRef} />
             </div>
 
@@ -116,13 +175,14 @@ export default function Chatbot() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Digite sua mensagem..."
-                className="flex-1 bg-muted/50 border-none rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all"
+                disabled={isLoading}
+                className="flex-1 bg-muted/50 border-none rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all disabled:opacity-50"
               />
               <Button
                 type="submit"
                 size="icon"
                 className="rounded-full w-10 h-10 shrink-0"
-                disabled={!inputValue.trim()}
+                disabled={!inputValue.trim() || isLoading}
               >
                 <Send className="w-4 h-4" />
               </Button>
