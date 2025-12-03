@@ -1,6 +1,6 @@
 import { useThemeStore } from '@/lib/store';
-import { Whatsapp } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import WhatsappIcon from './WhatsappIcon';
 import { ChevronDown, Menu, Moon, Sun, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'wouter';
@@ -140,7 +140,7 @@ export default function Header() {
           
           <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consultoria%20gratuita%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener noreferrer">
             <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:scale-105 active:scale-95 font-semibold flex items-center gap-2">
-              <Whatsapp className="w-4 h-4" />
+              <WhatsappIcon className="w-4 h-4" />
               Agendar Consultoria
             </Button>
           </a>
@@ -223,7 +223,7 @@ export default function Header() {
                 <div className="mt-auto pt-8">
                   <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consultoria%20gratuita%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener noreferrer" className="w-full">
                     <Button className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 font-semibold py-6 flex items-center justify-center gap-2">
-                      <Whatsapp className="w-5 h-5" />
+                      <WhatsappIcon className="w-5 h-5" />
                       Agendar Consultoria
                     </Button>
                   </a>

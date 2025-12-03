@@ -1,7 +1,8 @@
-import { Instagram, Linkedin, Mail, MapPin, Phone, Send, Whatsapp } from 'lucide-react';
+import { Instagram, Linkedin, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { Link } from 'wouter';
 import { useModal } from './ModalProvider';
 import TikTokIcon from './TikTokIcon';
+import WhatsappIcon from './WhatsappIcon';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -33,7 +34,7 @@ export default function Footer() {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300">
-                <Whatsapp className="w-5 h-5" />
+                <WhatsappIcon className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -117,7 +118,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Whatsapp className="w-5 h-5 text-primary shrink-0" />
+                <WhatsappIcon className="w-5 h-5 text-primary shrink-0" />
                 <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                   (12) 99189-5547 (WhatsApp)
                 </a>

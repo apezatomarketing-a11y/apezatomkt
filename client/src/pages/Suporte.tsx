@@ -2,7 +2,8 @@ import Layout from '@/components/Layout';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { HelpCircle, Mail, Whatsapp } from 'lucide-react';
+import { HelpCircle, Mail } from 'lucide-react';
+import WhatsappIcon from '@/components/WhatsappIcon';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -144,7 +145,7 @@ export default function Suporte() {
               className="bg-card border border-border p-8 rounded-2xl text-center hover:border-primary transition-colors group cursor-pointer"
             >
               <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Whatsapp className="w-8 h-8 text-primary" />
+                <WhatsappIcon className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4">Suporte via WhatsApp</h3>
               <p className="text-muted-foreground mb-6">
