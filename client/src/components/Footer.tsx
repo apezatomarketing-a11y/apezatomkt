@@ -14,11 +14,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}
           <div className="flex flex-col gap-6">
-            <Link href="/">
-              <a className="flex items-center gap-2 group">
-                <img src="/images/logo-small.png" alt="Apezato Marketing Logo" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
-                <span className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary">Apezato Marketing</span>
-              </a>
+            <Link href="/" className="flex items-center gap-2 group cursor-pointer">
+              <img src="/images/logo-small.png" alt="Apezato Marketing Logo" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
+              <span className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary">Apezato Marketing</span>
             </Link>
             <p className="text-muted-foreground leading-relaxed">
               Estratégia digital que transforma sua marca em autoridade e vendas. Metodologia 4D exclusiva para escalar negócios B2B e Saúde.
@@ -44,23 +42,23 @@ export default function Footer() {
             <h3 className="font-heading font-bold text-lg mb-6">Links Rápidos</h3>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/sobre">
-                  <a className="text-muted-foreground hover:text-primary transition-colors">Sobre Nós</a>
+                <Link href="/sobre" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                  Sobre Nós
                 </Link>
               </li>
               <li>
-                <Link href="/servicos">
-                  <a className="text-muted-foreground hover:text-primary transition-colors">Nossos Serviços</a>
+                <Link href="/servicos" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                  Nossos Serviços
                 </Link>
               </li>
               <li>
-                <Link href="/contato">
-                  <a className="text-muted-foreground hover:text-primary transition-colors">Contato</a>
+                <Link href="/contato" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                  Contato
                 </Link>
               </li>
               <li>
-                <Link href="/suporte">
-                  <a className="text-muted-foreground hover:text-primary transition-colors">Suporte</a>
+                <Link href="/suporte" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                  Suporte
                 </Link>
               </li>
             </ul>

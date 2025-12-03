@@ -29,8 +29,8 @@ export default function Chatbot() {
     setIsLoading(true);
 
     try {
-      // Chamar a API do backend para processar com Google Gemini
-      const response = await fetch('/api/chat', {
+      // Chamar a Netlify Function para processar com Google Gemini
+      const response = await fetch('/.netlify/functions/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
