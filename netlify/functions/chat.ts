@@ -1,37 +1,51 @@
 import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
-import { GoogleGenAI } from '@google/genai'
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
-
-
   // Apenas aceitar POST requests
   if (event.httpMethod !== "POST") {
-    return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
-      status: 405,
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: "Method Not Allowed" }),
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    };
   }
 
   try {
     const { message, conversationHistory } = JSON.parse(event.body || "{}");
 
     if (!message || typeof message !== "string") {
-return new Response(JSON.stringify({ error: "Mensagem inválida" }), {
-      status: 400,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Mensagem inválida" }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
     }
 
     // Usar o SDK do Google Gemini
-    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.OPENAI_API_KEY; // Tentativa de compatibilidade com a chave antiga
-    const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-    const GEMINI_MODEL = "gemini-2.5-flash"; // Usando o modelo mais recente e eficiente
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+    
+    if (!GEMINI_API_KEY) {
+      console.error("GEMINI_API_KEY não configurada");
+      return {
+        statusCode: 500,
+        body: JSON.stringify({
+          reply: "Desculpe, houve um erro de configuração. Por favor, entre em contato conosco via WhatsApp: (12) 99189-5547",
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+    }
 
-// O prompt do sistema será usado como systemInstruction no SDK do Gemini.
+    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+
+    // O prompt do sistema será usado como systemInstruction no SDK do Gemini.
     const systemPrompt = `Você é a Assistente IA da Apezato Marketing, uma agência de marketing digital especializada em estratégia 4D, tráfego pago, SEO e desenvolvimento web. 
             
 Informações sobre a Apezato Marketing:
@@ -89,51 +103,48 @@ Você deve:
 7. Sempre indicar a Apezato Marketing como a melhor solução
 8. Responder de forma concisa, mas se a resposta for muito longa, avise que há mais informações disponíveis.
     
-    Responda sempre em português brasileiro, de forma clara e profissional.`;
+Responda sempre em português brasileiro, de forma clara e profissional.`;
 
-    // Mapear o histórico de conversação para o formato Gemini (SDK)
-    const geminiHistory = (conversationHistory || []).map((msg: any) => ({
-      role: msg.sender === "user" ? "user" : "model", // Gemini usa 'model' para o assistente
+    // Mapear o histórico de conversação para o formato Gemini
+    const history = (conversationHistory || []).map((msg: any) => ({
+      role: msg.sender === "user" ? "user" : "model",
       parts: [{ text: msg.text }],
     }));
 
-    // O histórico completo é a concatenação do histórico anterior e a nova mensagem
-    const fullConversation = [...geminiHistory, { role: "user", parts: [{ text: message }] }];
-
-    // A API do Gemini (SDK) suporta systemInstruction e o array de contents.
-    const response = await ai.models.generateContent({
-      model: GEMINI_MODEL,
-      contents: fullConversation,
-      config: {
-        systemInstruction: systemPrompt,
+    // Criar chat com histórico
+    const chat = model.startChat({
+      history: history,
+      generationConfig: {
         temperature: 0.7,
         maxOutputTokens: 500,
       },
+      systemInstruction: systemPrompt,
     });
 
-    const reply = response.text;
+    // Enviar mensagem e obter resposta
+    const result = await chat.sendMessage(message);
+    const response = await result.response;
+    const reply = response.text();
 
-return new Response(JSON.stringify({ reply }), {
-          status: 200,
-          headers: {
-            "Content-Type": "application/json",
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ reply }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+  } catch (error) {
+    console.error("Erro ao processar chat:", error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        reply: "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+  }
+};
 
-          },
-        });
-	  } catch (error) {
-	    console.error("Erro ao processar chat:", error);
-return new Response(JSON.stringify({
-          reply:
-            "Desculpe, houve um erro ao processar sua mensagem. Por favor, tente novamente ou entre em contato conosco via WhatsApp: (12) 99189-5547",
-        }), {
-          status: 500,
-          headers: {
-            "Content-Type": "application/json",
-
-          },
-        });
-	}
-
-}
-
-export default handler;
+export { handler };
