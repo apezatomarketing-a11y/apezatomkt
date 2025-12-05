@@ -28,24 +28,14 @@ export default function Sobre() {
 
       {/* Story Section */}
       <section className="py-20">
-        <div className="container grid md:grid-cols-2 gap-12 items-center">
+        <div className="container grid md:grid-cols-2 gap-12 items-center flex-col-reverse md:flex-row">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <img 
-              src="/images/DanielleApezato.jpeg" 
-              alt="Danielle Apezato - Fundadora" 
-              className="rounded-2xl shadow-2xl border border-border w-full h-auto "
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-heading font-bold mb-6">Nossa História</h2>
+            <h2 className="text-3xl font-heading font-bold mb-2">Danielle Apezato - Fundadora</h2>
+            <h3 className="text-2xl font-heading font-bold mb-6 text-primary">Nossa História</h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">
               A Apezato Marketing nasceu da necessidade de trazer transparência e performance real para o mercado digital. Fundada com a visão de que cada negócio é único, desenvolvemos a metodologia 4D para garantir que nenhuma etapa do crescimento seja negligenciada.
             </p>
@@ -71,10 +61,21 @@ export default function Sobre() {
               </div>
             </div>
           </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <img 
+              src="/images/danielle-apezato.jpeg" 
+              alt="Danielle Apezato - Fundadora" 
+              className="rounded-2xl shadow-2xl border border-border w-full h-auto"
+            />
+          </motion.div>
         </div>
       </section>
 
-{/* Team Section */}
+      {/* Team Section */}
       <section className="py-20">
         <div className="container">
           <div className="text-center mb-16">
