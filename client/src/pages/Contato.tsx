@@ -143,11 +143,9 @@ export default function Contato() {
 
               {/* Map Placeholder */}
               <div className="h-[300px] bg-muted rounded-2xl overflow-hidden border border-border relative group">
-                <div className="absolute inset-0 flex items-center justify-center bg-muted/50 backdrop-blur-sm group-hover:backdrop-blur-none transition-all z-10">
-                  <p className="font-bold text-muted-foreground">Mapa Interativo (Google Maps)</p>
-                </div>
+                
 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.0!2d-45.9656!3d-23.1896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cce6c7d0f0f0f1%3A0x0!2zMjPCsDExJzIyLjYiUyA0NcKwNTcnNTYuMiJX!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.0!2d-45.9656!3d-23.1896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc4c7989508657%3A0x8534012111111111!2sJacare%C3%AD%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1701710000000!5m2!1spt-BR!2sbr" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 

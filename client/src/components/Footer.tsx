@@ -1,4 +1,5 @@
 import { Instagram, Linkedin, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { scrollToTop } from '@/lib/utils';
 import { Link } from 'wouter';
 import { useModal } from './ModalProvider';
 import TikTokIcon from './TikTokIcon';
@@ -14,7 +15,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}
           <div className="flex flex-col gap-6">
-            <Link href="/" className="flex items-center gap-2 group cursor-pointer">
+            <Link href="/" className="flex items-center gap-2 group cursor-pointer" onClick={scrollToTop}>
               <img src="/images/logo-small.png" alt="Apezato Marketing Logo" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
               <span className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary">Apezato Marketing</span>
             </Link>
@@ -42,22 +43,22 @@ export default function Footer() {
             <h3 className="font-heading font-bold text-lg mb-6">Links Rápidos</h3>
             <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/sobre" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                <Link href="/sobre" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer" onClick={scrollToTop}>
                   Sobre Nós
                 </Link>
               </li>
               <li>
-                <Link href="/servicos" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                <Link href="/servicos" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer" onClick={scrollToTop}>
                   Nossos Serviços
                 </Link>
               </li>
               <li>
-                <Link href="/contato" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                <Link href="/contato" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer" onClick={scrollToTop}>
                   Contato
                 </Link>
               </li>
               <li>
-                <Link href="/suporte" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                <Link href="/suporte" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer" onClick={scrollToTop}>
                   Suporte
                 </Link>
               </li>

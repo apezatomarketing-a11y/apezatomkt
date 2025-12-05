@@ -2,6 +2,7 @@ import { useThemeStore } from '@/lib/store';
 import { AnimatePresence, motion } from 'framer-motion';
 import WhatsappIcon from './WhatsappIcon';
 import { ChevronDown, Menu, Moon, Sun, X } from 'lucide-react';
+import { scrollToTop } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Button } from './ui/button';
@@ -64,7 +65,7 @@ export default function Header() {
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
-          <a className="flex items-center gap-2 group">
+          <a className="flex items-center gap-2 group" onClick={scrollToTop}>
             <div className="flex items-center gap-2 group">
               <img src="/images/logo-small.png" alt="Apezato Marketing Logo" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
               <span className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary">Apezato Marketing</span>
@@ -86,6 +87,7 @@ export default function Header() {
                   className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary ${
                     location === item.path ? 'text-primary' : 'text-foreground/80'
                   }`}
+                  onClick={!item.dropdown ? scrollToTop : undefined}
                 >
                   {item.name}
                   {item.dropdown && (
@@ -204,21 +206,42 @@ export default function Header() {
               <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
                 {navItems.map((item) => (
                   <div key={item.name} className="flex flex-col gap-2">
-                    <Link href={item.path}>
-                      <a
-                        className="text-lg font-medium text-foreground/90 hover:text-primary transition-colors"
-                        onClick={() => !item.dropdown && setMobileMenuOpen(false)}
+                    {item.dropdown ? (
+                      <button
+                        className="flex items-center justify-between w-full text-lg font-medium text-foreground/90 hover:text-primary transition-colors"
+                        onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
                       >
                         {item.name}
-                      </a>
-                    </Link>
-                    {item.dropdown && (
+                        <ChevronDown
+                          className={`w-5 h-5 transition-transform duration-200 ${
+                            activeDropdown === item.name ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+                    ) : (
+                      <Link href={item.path}>
+                        <a
+                          className="text-lg font-medium text-foreground/90 hover:text-primary transition-colors"
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            scrollToTop();
+                          }}
+                        >
+                          {item.name}
+                        </a>
+                      </Link>
+                    )}
+                    {item.dropdown && activeDropdown === item.name && (
                       <div className="pl-4 flex flex-col gap-3 border-l-2 border-border mt-2">
                         {item.dropdown.map((subItem) => (
                           <Link key={subItem.name} href={subItem.path}>
                             <a
                               className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                              onClick={() => setMobileMenuOpen(false)}
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setActiveDropdown(null);
+                                // Não chamar scrollToTop aqui, pois são âncoras
+                              }}
                             >
                               {subItem.name}
                             </a>
