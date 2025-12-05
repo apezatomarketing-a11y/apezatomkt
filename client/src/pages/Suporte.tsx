@@ -155,7 +155,7 @@ export default function Suporte() {
             </motion.a>
 
             <motion.a
-              href="mailto:apezatomarketing@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=apezatomarketing@gmail.com" target="_blank" rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
