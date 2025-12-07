@@ -53,7 +53,7 @@ const handler: Handler = async (event) => {
 
     // Enviar o e-mail usando Resend
     const { data: resendData, error } = await resend.emails.send({
-      from: "Formulário de Contato <onboarding@resend.dev>", // O domínio 'onboarding@resend.dev' é um domínio de teste da Resend. O usuário deve configurar um domínio verificado.
+      from: "Formulário de Contato <contato@apezatomarketing.com.br>", // O domínio 'onboarding@resend.dev' é um domínio de teste da Resend. O usuário deve configurar um domínio verificado.
       to: "contato@apezatomarketing.com.br", // E-mail do usuário
       subject: `Nova Mensagem de Contato de ${data.name}`,
       text: emailBody,
