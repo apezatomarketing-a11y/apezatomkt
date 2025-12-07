@@ -31,15 +31,11 @@ export default function Suporte() {
         return;
       }
 
-      // Enviar email via API
-      const response = await fetch('/api/send-email', {
+      // Enviar email via Netlify Function (Resend)
+      const response = await fetch('/.netlify/functions/submit-support-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          to: 'contato@apezatomarketing.com.br',
-          subject: `Novo Formulário de Suporte: ${formData.subject}`,
-          message: `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`,
-        }),
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -144,7 +140,7 @@ export default function Suporte() {
               viewport={{ once: true }}
               className="bg-card border border-border p-8 rounded-2xl text-center hover:border-primary transition-colors group cursor-pointer"
             >
-              <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center shrink-0">
                 <WhatsappIcon className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4">Suporte via WhatsApp</h3>
@@ -162,7 +158,7 @@ export default function Suporte() {
               transition={{ delay: 0.1 }}
               className="bg-card border border-border p-8 rounded-2xl text-center hover:border-primary transition-colors group cursor-pointer"
             >
-              <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center shrink-0">
                 <Mail className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4">Suporte via E-mail</h3>
@@ -186,7 +182,7 @@ export default function Suporte() {
             </h2>
             
             <Accordion type="single" collapsible className="w-full space-y-4">
-              {faqs.map((faq, index) => (
+              {faqs.map((faq, index ) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border border-border rounded-xl px-6 bg-card">
                   <AccordionTrigger className="text-lg font-medium hover:text-primary transition-colors py-6">
                     {faq.question}
