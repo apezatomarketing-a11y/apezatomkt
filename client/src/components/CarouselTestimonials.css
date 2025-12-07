@@ -1,0 +1,39 @@
+/* Arquivo CSS para a animação de rolagem contínua (marquee) */
+
+/* Define a animação de rolagem */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* O valor de -50% garante que a rolagem seja contínua, pois os itens foram duplicados */
+    transform: translateX(-50%);
+  }
+}
+
+/* Aplica a animação ao contêiner dos depoimentos */
+.animate-marquee {
+  /* Garante que o contêiner seja largo o suficiente para a rolagem */
+  width: 200%; 
+  
+  /* Aplica a animação */
+  animation: marquee 60s linear infinite;
+  
+  /* Garante que os itens não quebrem a linha */
+  white-space: nowrap;
+}
+
+/* Garante que os itens individuais possam ser dimensionados corretamente */
+.animate-marquee > * {
+  white-space: normal;
+}
+
+/* Oculta a barra de rolagem (Tailwind CSS 'scrollbar-hide' não funciona em todos os navegadores) */
+.overflow-x-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-x-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

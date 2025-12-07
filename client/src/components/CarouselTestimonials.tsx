@@ -2,6 +2,7 @@ import { testimonials, Testimonial } from '@/data/testimonials';
 import { Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import './CarouselTestimonials.css'; // Importar o CSS para a animação
 
 const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }) => (
   <motion.div
@@ -31,52 +32,16 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }
 );
 
 export default function CarouselTestimonials() {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setStartX(e.pageX - (carouselRef.current?.offsetLeft || 0));
-    setScrollLeft(carouselRef.current?.scrollLeft || 0);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - (carouselRef.current?.offsetLeft || 0);
-    const walk = (x - startX) * 1.5; // Multiplicador para velocidade de arrasto
-    if (carouselRef.current) {
-      carouselRef.current.scrollLeft = scrollLeft - walk;
-    }
-  };
+  // Duplica os depoimentos para criar o efeito de rolagem contínua
+  const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <div className="relative">
-      <div
-        ref={carouselRef}
-        className="flex overflow-x-scroll space-x-6 pb-4 cursor-grab active:cursor-grabbing scrollbar-hide"
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
-      >
-        {testimonials.map((testimonial, index) => (
+    <div className="relative overflow-hidden py-4">
+      <div className="flex space-x-6 animate-marquee">
+        {duplicatedTestimonials.map((testimonial, index) => (
           <TestimonialCard key={index} testimonial={testimonial} />
         ))}
       </div>
-      <p className="text-center text-sm text-muted-foreground mt-4">
-        * Arraste horizontalmente para ver mais depoimentos.
-      </p>
     </div>
   );
 }
