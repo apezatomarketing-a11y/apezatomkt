@@ -5,7 +5,13 @@ import { createClient } from '@supabase/supabase-js';
 // Configuração do Supabase
 const supabaseUrl = 'https://mmsvitsvienetiqbjqct.supabase.co';
 // Usando a chave de serviço (service_role secret) para inserção segura no backend
-const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY || '');
+const supabaseKey = process.env.SUPABASE_KEY;
+if (!supabaseKey) {
+  console.error("SUPABASE_KEY is not set.");
+  // Retorna um cliente Supabase que falhará na inserção, mas não no build.
+  // Isso é um fallback, mas o ideal é que a chave esteja sempre presente.
+}
+const supabase = createClient(supabaseUrl, supabaseKey || '');
 
 // A chave de API será injetada pelo Netlify a partir das variáveis de ambiente
 const resend = new Resend(process.env.RESEND_API_KEY);
