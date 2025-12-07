@@ -48,6 +48,19 @@ export default function Contato() {
         status: 'new',
       });
 
+      // Enviar e-mail de notificação via Netlify Function (Resend)
+      const response = await fetch('/.netlify/functions/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Falha ao enviar e-mail de notificação.');
+      }
+
       toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
       setFormData({
         name: '',
@@ -120,7 +133,7 @@ export default function Contato() {
                       <h3 className="font-bold text-lg">Telefone / WhatsApp</h3>
                       <p className="text-muted-foreground">(12) 2023-8569</p>
                       <a href="https://wa.me/5512991895547?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors">
-                        <p className="text-muted-foreground">(12) 99189-5547 (WhatsApp)</p>
+                        <p className="text-muted-foreground">(12 ) 99189-5547 (WhatsApp)</p>
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">Segunda a Sexta, das 9h às 18h.</p>
                     </div>
@@ -189,7 +202,7 @@ export default function Contato() {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                      placeholder="(00) 00000-0000"
+                      placeholder="(00 ) 00000-0000"
                     />
                   </div>
                 </div>
