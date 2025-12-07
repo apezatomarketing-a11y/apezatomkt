@@ -79,6 +79,10 @@ const handler: Handler = async (event) => {
     if (supabaseError) {
       console.error("Supabase Error:", supabaseError);
       // O erro no Supabase não deve impedir o sucesso do e-mail, mas deve ser logado.
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ message: "Failed to save form data to Supabase.", error: supabaseError.message }),
+      };
     }
 
     return {
