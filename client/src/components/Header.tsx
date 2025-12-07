@@ -155,22 +155,23 @@ export default function Header() {
           </a>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <div className="lg:hidden flex items-center gap-4">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-muted transition-colors"
-          >
-            {theme === 'dark' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-          </button>
-          
-          <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="p-2 text-foreground hover:text-primary transition-colors"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-        </div>
+	        {/* Mobile Menu Toggle */}
+	        <div className="lg:hidden flex items-center gap-4">
+	          <SearchBar /> {/* Adicionado SearchBar para mobile */}
+	          <button
+	            onClick={toggleTheme}
+	            className="p-2 rounded-full hover:bg-muted transition-colors"
+	          >
+	            {theme === 'dark' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+	          </button>
+	          
+	          <button
+	            onClick={() => setMobileMenuOpen(true)}
+	            className="p-2 text-foreground hover:text-primary transition-colors"
+	          >
+	            <Menu className="w-6 h-6" />
+	          </button>
+	        </div>
       </div>
 
       {/* Mobile Drawer */}
@@ -191,15 +192,18 @@ export default function Header() {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               className="fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-background border-l border-border z-50 lg:hidden flex flex-col shadow-2xl"
             >
-              <div className="p-6 flex items-center justify-between border-b border-border/50">
-                <span className="font-heading font-bold text-xl">Menu</span>
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 hover:bg-muted rounded-full transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
+	              <div className="p-6 flex items-center justify-between border-b border-border/50">
+	                <span className="font-heading font-bold text-xl">Menu</span>
+	                <button
+	                  onClick={() => setMobileMenuOpen(false)}
+	                  className="p-2 hover:bg-muted rounded-full transition-colors"
+	                >
+	                  <X className="w-6 h-6" />
+	                </button>
+	              </div>
+	              <div className="p-6 border-b border-border/50">
+	                <SearchBar /> {/* Adicionado SearchBar dentro do menu mobile */}
+	              </div>
               
               <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
                 {navItems.map((item) => (
@@ -229,24 +233,24 @@ export default function Header() {
                         </a>
                       </Link>
                     )}
-                    {item.dropdown && activeDropdown === item.name && (
-                      <div className="pl-4 flex flex-col gap-3 border-l-2 border-border mt-2">
-                        {item.dropdown.map((subItem) => (
-                          <Link key={subItem.name} href={subItem.path}>
-                            <a
-                              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                              onClick={() => {
-                                setMobileMenuOpen(false);
-                                setActiveDropdown(null);
-                                // Não chamar scrollToTop aqui, pois são âncoras
-                              }}
-                            >
-                              {subItem.name}
-                            </a>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+	                    {item.dropdown && activeDropdown === item.name && (
+	                      <div className="pl-4 flex flex-col gap-3 border-l-2 border-border mt-2">
+	                        {item.dropdown.map((subItem) => (
+	                          <Link key={subItem.name} href={subItem.path}>
+	                            <a
+	                              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+	                              onClick={() => {
+	                                setMobileMenuOpen(false);
+	                                setActiveDropdown(null);
+	                                // Não chamar scrollToTop aqui, pois são âncoras
+	                              }}
+	                            >
+	                              {subItem.name}
+	                            </a>
+	                          </Link>
+	                        ))}
+	                      </div>
+	                    )}
                   </div>
                 ))}
                 

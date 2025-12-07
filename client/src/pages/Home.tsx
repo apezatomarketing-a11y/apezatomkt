@@ -2,10 +2,11 @@ import Layout from '@/components/Layout';
 import { useModal } from '@/components/ModalProvider';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { ArrowRight, BarChart3, Code2, PenTool, Play, Rocket, Search, Star, CheckCircle2, TrendingUp, Clock, Award } from 'lucide-react';
+import { ArrowRight, BarChart3, Code2, PenTool, Play, Rocket, Search, CheckCircle2, TrendingUp, Clock, Award } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import AnimatedHeadline from '@/components/AnimatedHeadline';
 import AnimatedCounter from '@/components/AnimatedCounter';
+import CarouselTestimonials from '@/components/CarouselTestimonials';
 import CircularServices from '@/components/CircularServices';
 import SnowflakesEffect from '@/components/SnowflakesEffect';
 
@@ -470,56 +471,7 @@ export default function Home() {
             <p className="text-muted-foreground">Histórias reais de quem transformou seu negócio com a Apezato.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'Dr. Ana Paula',
-                role: 'Clínica de Estética',
-                text: 'A Apezato transformou nosso site em uma máquina de agendamentos. A agenda está lotada e o posicionamento da marca mudou completamente.',
-                stars: 5,
-              },
-              {
-                name: 'Carlos Mendes',
-                role: 'CEO TechSolutions',
-                text: 'ROI triplicado em 3 meses de gestão de tráfego. A equipe é extremamente técnica e transparente com os dados.',
-                stars: 5,
-              },
-              {
-                name: 'Fernanda Lima',
-                role: 'E-commerce de Moda',
-                text: 'O redesign da nossa loja virtual aumentou a conversão em 40%. O cuidado com a experiência do usuário foi o diferencial.',
-                stars: 5,
-              },
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="bg-background p-8 rounded-2xl border border-border relative"
-              >
-                <div className="absolute top-6 right-8 text-6xl text-primary/10 font-serif">"</div>
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.stars)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-6 relative z-10 italic">
-                  "{testimonial.text}"
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold">
-                    {testimonial.name[0]}
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">{testimonial.name}</h4>
-                    <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+	          <CarouselTestimonials />
         </div>
       </section>
 
