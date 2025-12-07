@@ -1,6 +1,7 @@
 import { useThemeStore } from '@/lib/store';
 import { AnimatePresence, motion } from 'framer-motion';
 import WhatsappIcon from './WhatsappIcon';
+import SearchBar from './SearchBar';
 import { ChevronDown, Menu, Moon, Sun, X } from 'lucide-react';
 import { scrollToTop } from '@/lib/utils';
 import { useEffect, useState } from 'react';
@@ -131,6 +132,7 @@ export default function Header() {
 
         {/* Actions */}
         <div className="hidden lg:flex items-center gap-4">
+          <SearchBar />
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-muted transition-colors text-foreground/80 hover:text-primary"

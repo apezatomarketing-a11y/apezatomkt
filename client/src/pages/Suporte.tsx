@@ -36,7 +36,7 @@ export default function Suporte() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          to: 'apezatomarketing@gmail.com',
+          to: 'contato@apezatomarketing.com.br',
           subject: `Novo Formulário de Suporte: ${formData.subject}`,
           message: `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`,
         }),
@@ -155,7 +155,7 @@ export default function Suporte() {
             </motion.a>
 
             <motion.a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=apezatomarketing@gmail.com" target="_blank" rel="noopener noreferrer"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=contato@apezatomarketing.com.br" target="_blank" rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -199,34 +199,7 @@ export default function Suporte() {
             </Accordion>
           </motion.div>
 
-          {/* Guarantee Section */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mb-20"
-          >
-            <h2 className="text-3xl font-heading font-bold mb-8">Garantia e Reembolso</h2>
-            <p className="text-muted-foreground text-lg mb-8">
-              Sua satisfação é nossa prioridade. Conheça nossa política de garantia.
-            </p>
-            
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              {guaranteeItems.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-card border border-border p-8 rounded-2xl"
-                >
-                  <h3 className="text-xl font-bold mb-3 text-primary">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+
 
           {/* Payment Methods Section */}
           <motion.div

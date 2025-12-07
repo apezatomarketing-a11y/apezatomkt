@@ -20,7 +20,7 @@ export default function Footer() {
               <span className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary">Apezato Marketing</span>
             </Link>
             <p className="text-muted-foreground leading-relaxed">
-              Estratégia digital que transforma sua marca em autoridade e vendas. Metodologia 4D exclusiva para escalar negócios B2B e Saúde.
+              Da concepção da marca ao gerenciamento completo de marketing digital. A metodologia 4D da Apezato impulsiona negócios com precisão cirúrgica.
             </p>
             <div className="flex items-center gap-4">
               <a href="https://www.tiktok.com/@apezatomarketing" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-full bg-muted hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 hover:-translate-y-1 cursor-pointer">
@@ -118,8 +118,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <a href="mailto:apezatomarketing@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                  apezatomarketing@gmail.com
+                <a href="mailto:contato@apezatomarketing.com.br" className="text-muted-foreground hover:text-primary transition-colors">
+                  contato@apezatomarketing.com.br
                 </a>
               </li>
             </ul>
@@ -141,7 +141,7 @@ export default function Footer() {
             </button>
           </div>
           <p className="text-sm text-muted-foreground text-center">
-            &copy; {currentYear} Apezato Marketing. Todos os direitos reservados.
+            &copy; 2026 Apezato Marketing. Todos os direitos reservados.
           </p>
         </div>
       </div>

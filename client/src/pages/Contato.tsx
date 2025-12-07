@@ -108,7 +108,7 @@ export default function Contato() {
                     <div>
                       <h3 className="font-bold text-lg">Endereço</h3>
                       <p className="text-muted-foreground">Jacareí, SP - Brasil</p>
-                      <p className="text-sm text-muted-foreground mt-1">Atendemos clientes em todo o mundo.</p>
+                      <p className="text-sm text-muted-foreground mt-1">Atendemos clientes em todo o país.</p>
                     </div>
                   </div>
                   
@@ -132,8 +132,8 @@ export default function Contato() {
                     </div>
                     <div>
                       <h3 className="font-bold text-lg">E-mail</h3>
-                      <a href="mailto:apezatomarketing@gmail.com" className="text-primary hover:text-primary/80 transition-colors">
-                        <p className="text-muted-foreground">apezatomarketing@gmail.com</p>
+                      <a href="mailto:contato@apezatomarketing.com.br" className="text-primary hover:text-primary/80 transition-colors">
+                        <p className="text-muted-foreground">contato@apezatomarketing.com.br</p>
                       </a>
                       <p className="text-sm text-muted-foreground mt-1">Resposta em até 24 horas úteis.</p>
                     </div>
