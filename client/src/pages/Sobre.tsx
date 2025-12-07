@@ -67,7 +67,7 @@ export default function Sobre() {
             viewport={{ once: true }}
           >
             <img 
-              src="/images/danielle-apezato.jpeg" 
+              src="/images/DanielleApezato-sobre.jpeg" 
               alt="Danielle Apezato - Fundadora" 
               className="rounded-2xl shadow-2xl border border-border w-full h-auto"
             />
