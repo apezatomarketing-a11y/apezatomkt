@@ -1,5 +1,11 @@
 import { Handler } from "@netlify/functions";
 import { Resend } from "resend";
+import { createClient } from '@supabase/supabase-js';
+
+// Configuração do Supabase
+const supabaseUrl = 'https://mmsvitsvienetiqbjqct.supabase.co';
+// Usando a chave de serviço (service_role secret) para inserção segura no backend
+const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY || '');
 
 // A chave de API será injetada pelo Netlify a partir das variáveis de ambiente
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -50,6 +56,23 @@ const handler: Handler = async (event) => {
         statusCode: 500,
         body: JSON.stringify({ message: "Failed to send email via Resend.", error: error.message }),
       };
+    }
+
+    // Lógica de inserção no Supabase
+    const { error: supabaseError } = await supabase
+      .from('form_submissions')
+      .insert({
+        form_type: 'support',
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        subject: data.subject,
+        resend_id: resendData?.id,
+      });
+
+    if (supabaseError) {
+      console.error("Supabase Error:", supabaseError);
+      // O erro no Supabase não deve impedir o sucesso do e-mail, mas deve ser logado.
     }
 
     return {

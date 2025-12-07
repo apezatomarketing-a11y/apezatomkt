@@ -1,5 +1,11 @@
 import { Handler } from "@netlify/functions";
 import { Resend } from "resend";
+import { createClient } from '@supabase/supabase-js';
+
+// Configuração do Supabase
+const supabaseUrl = 'https://mmsvitsvienetiqbjqct.supabase.co';
+// Usando a chave de serviço (service_role secret) para inserção segura no backend
+const supabase = createClient(supabaseUrl, process.env.SUPABASE_KEY || '');
 
 // A chave de API será injetada pelo Netlify a partir das variáveis de ambiente
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -55,8 +61,30 @@ const handler: Handler = async (event) => {
       };
     }
 
-    // Se o Supabase for necessário, a lógica de criação de lead deve ser adicionada aqui.
-    // Como não tenho as credenciais do Supabase, vou apenas retornar sucesso para o envio do e-mail.
+    // Lógica de inserção no Supabase
+    const { error: supabaseError } = await supabase
+      .from('form_submissions')
+      .insert({
+        form_type: 'contact',
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        phone: data.phone || null,
+        company_name: data.company_name || null,
+        website: data.website || null,
+        budget_range: data.budget_range || null,
+        resend_id: resendData?.id,
+      });
+
+    if (supabaseError) {
+      console.error("Supabase Error:", supabaseError);
+      // O erro no Supabase não deve impedir o sucesso do e-mail, mas deve ser logado.
+      // Se for crítico, descomente o retorno de erro abaixo:
+      // return {
+      //   statusCode: 500,
+      //   body: JSON.stringify({ message: "Failed to save form data to Supabase.", error: supabaseError.message }),
+      // };
+    }
 
     return {
       statusCode: 200,
