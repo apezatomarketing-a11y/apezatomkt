@@ -1,6 +1,6 @@
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
-import { createLead } from '@/lib/supabase';
+// import { createLead } from '@/lib/supabase'; // Removido: Supabase não será mais usado no front-end
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useState } from 'react';
@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 
 export default function Contato() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const WHATSAPP_NUMBER = '5512991895547'; // Número do WhatsApp (55 + DDD + Número)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,33 +36,29 @@ export default function Contato() {
         return;
       }
 
-      // Criar lead no Supabase
-      await createLead({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone || undefined,
-        company_name: formData.company_name || undefined,
-        website: formData.website || undefined,
-        budget_range: (formData.budget_range as any) || undefined,
-        message: formData.message,
-        source: 'contact-form',
-        status: 'new',
-      });
+      // 1. Montar a mensagem para o WhatsApp
+      const whatsappMessage = `
+Olá, sou *${formData.name}* e gostaria de solicitar um orçamento.
 
-      // Enviar e-mail de notificação via Netlify Function (Resend)
-      const response = await fetch('/.netlify/functions/submit-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+*Detalhes do Contato:*
+E-mail: ${formData.email}
+WhatsApp: ${formData.phone || 'Não informado'}
+Empresa: ${formData.company_name || 'Não informado'}
+Site: ${formData.website || 'Não informado'}
+Orçamento Estimado: ${formData.budget_range || 'Não informado'}
 
-      if (!response.ok) {
-        throw new Error('Falha ao enviar e-mail de notificação.');
-      }
+*Mensagem:*
+${formData.message}
+      `.trim();
 
-      toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+      // 2. Codificar a mensagem e criar o link
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+      // 3. Abrir o link do WhatsApp
+      window.open(whatsappLink, '_blank');
+
+      toast.success('Redirecionando para o WhatsApp com sua solicitação!');
       setFormData({
         name: '',
         email: '',
@@ -237,14 +234,14 @@ export default function Contato() {
                 <div className="space-y-2">
                   <label htmlFor="website" className="text-sm font-medium">Site da Empresa</label>
                   <input 
-                    id="website"
-                    name="website"
-                    type="url"
-                    value={formData.website}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                    placeholder="www.suaempresa.com.br"
-                  />
+                      id="website"
+                      name="website"
+                      type="text" // Alterado para 'text' para aceitar formatos informais
+                      value={formData.website}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                      placeholder="suaempresa.com.br ou www.suaempresa.com.br"
+                    />
                 </div>
                 
                 <div className="space-y-2">

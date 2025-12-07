@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { HelpCircle, Mail } from 'lucide-react';
 import WhatsappIcon from '@/components/WhatsappIcon';
 import { useState } from 'react';
+import { WHATSAPP_NUMBER } from '@/shared/const'; // Importar o número do WhatsApp de um arquivo de constantes
 import { toast } from 'sonner';
 
 export default function Suporte() {
@@ -25,25 +26,33 @@ export default function Suporte() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      if (!formData.name || !formData.email || !formData.message) {
+      if (!formData.name || !formData.email || !formData.subject || !formData.message) {
         toast.error('Preencha todos os campos obrigatórios.');
         setIsSubmitting(false);
         return;
       }
 
-      // Enviar email via Netlify Function (Resend)
-      const response = await fetch('/.netlify/functions/submit-support-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      // 1. Montar a mensagem para o WhatsApp
+      const whatsappMessage = `
+*SOLICITAÇÃO DE SUPORTE*
 
-      if (response.ok) {
-        toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        toast.error('Erro ao enviar mensagem. Tente novamente.');
-      }
+*Nome:* ${formData.name}
+*E-mail:* ${formData.email}
+*Assunto:* ${formData.subject}
+
+*Mensagem:*
+${formData.message}
+      `.trim();
+
+      // 2. Codificar a mensagem e criar o link
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+      // 3. Abrir o link do WhatsApp
+      window.open(whatsappLink, '_blank');
+
+      toast.success('Redirecionando para o WhatsApp com sua solicitação de suporte!');
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Erro ao enviar mensagem:', error);
       toast.error('Erro ao enviar mensagem. Tente novamente.');
@@ -288,7 +297,7 @@ export default function Suporte() {
               </div>
 
               <Button type="submit" disabled={isSubmitting} className="w-full">
-                {isSubmitting ? 'Enviando...' : 'Enviar Formulário'}
+                {isSubmitting ? 'Redirecionando...' : 'Enviar Formulário'}
               </Button>
             </form>
           </motion.div>
