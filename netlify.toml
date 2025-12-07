@@ -1,10 +1,10 @@
 [build]
-  command = "pnpm build"
+  command = "pnpm install --prefix netlify/functions && pnpm run build"
   publish = "dist/public"
-  functions = "netlify/functions"
+  
 
 [functions]
-  node_bundler = "esbuild"
+  node_bundler = "esbuild"\n  external_node_modules = ["resend"]
 
 [[redirects]]
   from = "/*"
