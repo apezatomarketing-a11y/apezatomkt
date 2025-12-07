@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 // import { createLead } from '@/lib/supabase'; // Removido: Supabase não será mais usado no front-end
+import { WHATSAPP_NUMBER } from '@/shared/const';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useState } from 'react';
@@ -8,7 +9,7 @@ import { toast } from 'sonner';
 
 export default function Contato() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const WHATSAPP_NUMBER = '5512991895547'; // Número do WhatsApp (55 + DDD + Número)
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',

@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 import { HelpCircle, Mail } from 'lucide-react';
 import WhatsappIcon from '@/components/WhatsappIcon';
 import { useState } from 'react';
-import { WHATSAPP_NUMBER } from '@/shared/const'; // Importar o número do WhatsApp de um arquivo de constantes
 import { toast } from 'sonner';
+import { WHATSAPP_NUMBER } from '@/shared/const'; // Importar o número do WhatsApp de um arquivo de constantes
 
 export default function Suporte() {
   const [isSubmitting, setIsSubmitting] = useState(false);
