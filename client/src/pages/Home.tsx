@@ -3,7 +3,7 @@ import { useModal } from '@/components/ModalProvider';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { ArrowRight, BarChart3, Code2, PenTool, Play, Rocket, Search, CheckCircle2, TrendingUp, Clock, Award } from 'lucide-react';
-import DanielleInicio from '@/assets/DanielleApezato-inicio.jpg';
+
 import { useEffect, useState } from 'react';
 import AnimatedHeadline from '@/components/AnimatedHeadline';
 import AnimatedCounter from '@/components/AnimatedCounter';
@@ -93,7 +93,7 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-emerald-500/20 rounded-full blur-3xl animate-pulse" />
             <img 
-              src={DanielleInicio} 
+              src="/images/DanielleApezato-inicio.jpg" 
               alt="Danielle Apezato" 
               className="relative z-10 w-full max-w-md mx-auto rounded-2xl shadow-2xl border border-white/10 glass-card object-cover aspect-[4/5]"
             />
