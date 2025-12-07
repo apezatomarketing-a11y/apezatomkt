@@ -4,7 +4,8 @@
   
 
 [functions]
-  node_bundler = "esbuild"\n  external_node_modules = ["resend"]
+  node_bundler = "esbuild"
+  external_node_modules = ["resend"]
 
 [[redirects]]
   from = "/*"
