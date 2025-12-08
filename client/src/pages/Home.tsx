@@ -322,22 +322,22 @@ export default function Home() {
               {
                 title: 'Web Design & Landing Pages',
                 desc: 'Páginas de alta conversão projetadas para transformar visitantes em leads qualificados.',
-                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop',
+                image: '/images/servico-webdesign.jpg',
               },
               {
                 title: 'Tráfego Pago (Ads)',
                 desc: 'Campanhas estratégicas no Google e Meta Ads para atrair o público certo no momento certo.',
-                image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
+                image: '/images/servico-trafego-pago.jpg',
               },
               {
                 title: 'Gestão de Redes Sociais',
                 desc: 'Estratégias de Marketing personalizadas para qualquer rede social, aumentando seu engajamento e fidelizando clientes.',
-                image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
+                image: '/images/servico-redes-sociais.jpg',
               },
               {
                 title: 'Branding',
                 desc: 'Identidade Visual estratégica que reflete o DNA da sua marca e a destaca no mercado, criando conexão com seu público.',
-                image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
+                image: '/images/servico-branding.jpg',
               },
             ].map((service, index) => (
               <motion.div
