@@ -332,7 +332,7 @@ export default function Home() {
               {
                 title: 'Gestão de Redes Sociais',
                 desc: 'Estratégias de Marketing personalizadas para qualquer rede social, aumentando seu engajamento e fidelizando clientes.',
-                image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2340&auto=format&fit=crop',
+                image: '/images/social_media.png',
               },
               {
                 title: 'Branding',
