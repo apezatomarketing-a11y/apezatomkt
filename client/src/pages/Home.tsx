@@ -327,7 +327,7 @@ export default function Home() {
               {
                 title: 'Tráfego Pago (Ads)',
                 desc: 'Campanhas estratégicas no Google e Meta Ads para atrair o público certo no momento certo.',
-                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2340&auto=format&fit=crop',
+                imagehttps://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
               },
               {
                 title: 'Gestão de Redes Sociais',
