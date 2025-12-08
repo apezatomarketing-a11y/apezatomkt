@@ -337,7 +337,7 @@ export default function Home() {
               {
                 title: 'Branding',
                 desc: 'Identidade Visual estratégica que reflete o DNA da sua marca e a destaca no mercado, criando conexão com seu público.',
-                image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2340&auto=format&fit=crop',
+                image:https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop,
               },
             ].map((service, index) => (
               <motion.div
