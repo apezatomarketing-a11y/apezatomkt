@@ -98,7 +98,7 @@ export default function Home() {
             >
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-emerald-500/20 rounded-full blur-3xl animate-pulse" />
             <img 
-              src="/images/DanielleApezato-inicio-v2.jpg" 
+              src="/images/DanielleApezato-inicio-v3.jpg" 
               alt="Danielle Apezato" 
               className="relative z-10 w-full max-w-md mx-auto rounded-2xl shadow-2xl border border-white/10 glass-card object-cover aspect-[4/5]"
             />
