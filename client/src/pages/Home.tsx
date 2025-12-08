@@ -43,7 +43,7 @@ export default function Home() {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="text-center lg:text-left"
+            className="text-center lg:text-left lg:order-last"
           >
             <motion.div variants={fadeInUp} className="inline-block mb-4 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold tracking-wide uppercase">
               Agência de <AnimatedHeadline words={['Marketing Digital', 'Criação de Sites', 'Gestão de Redes Sociais', 'Tráfego Pago', 'Branding']} />
@@ -91,12 +91,18 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative hidden lg:block"
           >
+            <motion.div
+              animate={{ x: [0, 5, -5, 0], y: [0, -5, 5, 0] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              className="relative z-10"
+            >
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-emerald-500/20 rounded-full blur-3xl animate-pulse" />
             <img 
               src="/images/DanielleApezato-inicio.jpeg" 
               alt="Danielle Apezato" 
               className="relative z-10 w-full max-w-md mx-auto rounded-2xl shadow-2xl border border-white/10 glass-card object-cover aspect-[4/5]"
             />
+            </motion.div>
             
             {/* Floating Cards */}
             <motion.div 
