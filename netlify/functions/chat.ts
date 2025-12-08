@@ -145,6 +145,19 @@ Responda sempre em português brasileiro, de forma clara e profissional.`;
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Erro da API Gemini:", errorText);
+
+      if (response.status === 429) {
+        return {
+          statusCode: 503, // Service Unavailable (mais apropriado para erro de quota)
+          body: JSON.stringify({
+            reply: "Desculpe, o serviço de inteligência artificial está temporariamente indisponível devido a um alto volume de requisições. Por favor, tente novamente mais tarde ou entre em contato conosco via WhatsApp: (12) 99189-5547",
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      }
+      
       throw new Error(`API Error: ${response.status} - ${errorText}`);
     }
 
