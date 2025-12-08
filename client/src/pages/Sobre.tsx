@@ -74,7 +74,7 @@ export default function Sobre() {
               className="relative z-10"
             >
               <img 
-                src="/images/DanielleApezato-sobre-v4.jpeg" 
+                src="/images/danielle-sobre.jpeg" 
                 alt="Danielle Apezato - Fundadora" 
                 className="rounded-2xl shadow-2xl border border-border w-full h-auto"
               />
