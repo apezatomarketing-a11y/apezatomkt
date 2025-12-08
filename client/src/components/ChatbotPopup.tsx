@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';\nimport { useChatStore } from '@/lib/store';
+import { useState, useEffect } from 'react';
+import { useChatStore } from '@/lib/store';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -7,7 +8,6 @@ export default function ChatbotPopup() {
   const [isClosed, setIsClosed] = useState(false);
 
   useEffect(() => {
-    // Mostrar popup após 3 segundos
     const timer = setTimeout(() => {
       if (!isClosed) {
         setIsVisible(true);
@@ -19,7 +19,14 @@ export default function ChatbotPopup() {
 
   const handleClose = () => {
     setIsVisible(false);
-    setIsClosed(true);\n  };\n\n  const { toggleChat } = useChatStore();\n\n  const handleOpenChat = () => {\n    toggleChat();\n    handleClose();
+    setIsClosed(true);
+  };
+
+  const { toggleChat } = useChatStore();
+
+  const handleOpenChat = () => {
+    toggleChat();
+    handleClose();
   };
 
   return (
@@ -33,18 +40,15 @@ export default function ChatbotPopup() {
           className="fixed bottom-24 right-6 z-40 max-w-sm"
         >
          <div className="relative bg-card border-2 border-primary/30 rounded-2xl shadow-2xl p-4 cursor-pointer" onClick={handleOpenChat}>
-            {/* Botão fechar */}
             <button
-              onClick={handleClose}
+              onClick={(e) => { e.stopPropagation(); handleClose(); }}
               className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors shadow-lg"
               aria-label="Fechar"
             >
               <X className="w-4 h-4" />
             </button>
 
-            {/* Conteúdo */}
             <div className="flex items-start gap-4">
-              {/* Foto */}
               <div className="shrink-0">
                 <img
                   src="/images/danielle_popup.png"
@@ -53,10 +57,8 @@ export default function ChatbotPopup() {
                 />
               </div>
 
-              {/* Mensagem */}
               <div className="flex-1">
                 <div className="bg-primary/10 rounded-2xl rounded-tl-none p-4 relative">
-                  {/* Balão de fala */}
                   <div className="absolute -left-2 top-0 w-0 h-0 border-t-[12px] border-t-primary/10 border-r-[12px] border-r-transparent" />
                   
                   <p className="text-sm font-semibold text-foreground mb-1">
@@ -69,7 +71,6 @@ export default function ChatbotPopup() {
               </div>
             </div>
 
-            {/* Seta apontando para o chatbot */}
             <div className="absolute -bottom-2 right-8 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[12px] border-t-primary/30" />
           </div>
         </motion.div>

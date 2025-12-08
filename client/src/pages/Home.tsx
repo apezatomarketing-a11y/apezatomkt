@@ -327,7 +327,7 @@ export default function Home() {
               {
                 title: 'Tráfego Pago (Ads)',
                 desc: 'Campanhas estratégicas no Google e Meta Ads para atrair o público certo no momento certo.',
-                imagehttps://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
+                image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
               },
               {
                 title: 'Gestão de Redes Sociais',
@@ -337,7 +337,7 @@ export default function Home() {
               {
                 title: 'Branding',
                 desc: 'Identidade Visual estratégica que reflete o DNA da sua marca e a destaca no mercado, criando conexão com seu público.',
-                image:https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop,
+                image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
               },
             ].map((service, index) => (
               <motion.div
