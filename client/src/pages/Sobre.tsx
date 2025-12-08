@@ -29,11 +29,12 @@ export default function Sobre() {
 
       {/* Story Section */}
       <section className="py-20">
-        <div className="container grid md:grid-cols-2 gap-12 items-center flex-col-reverse md:flex-row">
+        <div className="container grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            className="md:order-last"
           >
             <h2 className="text-3xl font-heading font-bold mb-2">Danielle Apezato - Fundadora</h2>
             <h3 className="text-2xl font-heading font-bold mb-6 text-primary">Nossa História</h3>
@@ -67,11 +68,17 @@ export default function Sobre() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <img 
-              src="/images/DanielleApezato-sobre.jpg" 
-              alt="Danielle Apezato - Fundadora" 
-              className="rounded-2xl shadow-2xl border border-border w-full h-auto"
-            />
+            <motion.div
+              animate={{ x: [0, 5, -5, 0], y: [0, -5, 5, 0] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              className="relative z-10"
+            >
+              <img 
+                src="/images/DanielleApezato-sobre-v2.jpg" 
+                alt="Danielle Apezato - Fundadora" 
+                className="rounded-2xl shadow-2xl border border-border w-full h-auto"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </section>
