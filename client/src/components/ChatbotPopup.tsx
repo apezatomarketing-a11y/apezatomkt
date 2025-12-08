@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { useChatStore } from '@/lib/store';\n\nexport default function ChatbotPopup() {
+export default function ChatbotPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
 
@@ -19,7 +19,7 @@ import { useChatStore } from '@/lib/store';\n\nexport default function ChatbotPo
 
   const handleClose = () => {
     setIsVisible(false);
-    setIsClosed(true);\n  };\n\n  const { toggleChat } = useChatStore();\n\n  const handleOpenChat = () => {\n    toggleChat();\n    handleClose();
+    setIsClosed(true);
   };
 
   return (
@@ -32,7 +32,7 @@ import { useChatStore } from '@/lib/store';\n\nexport default function ChatbotPo
           transition={{ duration: 0.3 }}
           className="fixed bottom-24 right-6 z-40 max-w-sm"
         >
-          <div className="relative bg-card border-2 border-primary/30 rounded-2xl shadow-2xl p-4 cursor-pointer" onClick={handleOpenChat}>
+          <div className="relative bg-card border-2 border-primary/30 rounded-2xl shadow-2xl p-4">
             {/* Botão fechar */}
             <button
               onClick={handleClose}
@@ -47,7 +47,7 @@ import { useChatStore } from '@/lib/store';\n\nexport default function ChatbotPo
               {/* Foto */}
               <div className="shrink-0">
                 <img
-                  src="/images/danielle_profile.jpg"
+                  src="/images/Danielle Apezato (foto inicio).jpeg"
                   alt="Danielle Apezato"
                   className="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-lg"
                 />
