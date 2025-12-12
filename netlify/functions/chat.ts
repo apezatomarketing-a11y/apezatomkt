@@ -331,4 +331,3 @@ const handler: Handler = async (event: HandlerEvent, contextNetlify: HandlerCont
 };
 
 export { handler };
-`
